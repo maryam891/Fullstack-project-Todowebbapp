@@ -1,0 +1,195 @@
+.navbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    padding-left: 10px;
+    border-radius: 5px;
+    font-weight: 400;
+
+}
+
+.desktopMenu {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.desktopIcon {
+    cursor: pointer;
+    color: #081051;
+    margin-right: 20px;
+}
+
+.navContainer {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.navbar h1 {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 2rem;
+    color: #081051;
+    width: 220px;
+}
+
+.nav-link {
+    display: inline-block;
+    list-style: none;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 1rem;
+    color: #081051;
+    font-weight: 600;
+    transform: scale(1);
+    transition: transform .3s ease-in-out;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    transform: scale(1.1);
+    box-shadow: #4b4a4a 1px 1px 1px;
+    border-radius: 5px;
+    background-color: rgba(243, 237, 242, 0.553);
+
+
+}
+
+.navbar li {
+    display: inline;
+    margin-top: 10px;
+    padding: 0px 10px 5px 15px;
+    margin-left: 15px;
+
+}
+
+/*Hamburger menu*/
+.hamburger {
+    display: none;
+}
+
+/*checkbox used to check if hamburger menu is clicked */
+#menu-toggle {
+    display: none;
+}
+
+.mobileIconContainer {
+    display: none;
+}
+
+.DesktopIconContainer {
+    display: block;
+    width: 100px;
+    padding-top: 10px;
+
+}
+
+.mobileMenu,
+.hamburger-menu {
+    display: none;
+}
+
+@media screen and (min-width: 360px) and (max-width: 780px) {
+    .navbar h1 {
+        margin-top: 10px;
+        width: 250px;
+        font-size: 1.625rem;
+    }
+
+    .desktopMenu {
+        display: none;
+    }
+
+    .hamburger {
+        cursor: pointer;
+        display: block;
+        margin-top: 13px;
+        width: auto;
+    }
+
+    /* to keep the hamburger menu in the flex flow*/
+
+    .hamburger-menu {
+        display: flex;
+        margin-right: 20px;
+        position: relative;
+        width: 30px;
+    }
+
+    .hamburger span {
+        background-color: black;
+        display: block;
+        height: 3px;
+        margin: 5px;
+        transition: all 0.3s;
+        width: 30px;
+
+    }
+
+    .menu.MobileLinks {
+        background-color: rgba(255, 255, 255, 0.932);
+        border-radius: 6px;
+        display: none;
+        height: 180px;
+        margin-top: 30px;
+        position: absolute;
+        right: 0.1em;
+        text-align: center;
+        top: 13px;
+        width: 220px;
+    }
+
+    /*links inside hamburger menu*/
+
+    .menu li {
+        display: inline-block;
+        font-size: 19px;
+        font-weight: 400;
+        padding: 0px 7px 0px 7px;
+
+    }
+
+    .nav-link {
+        color: #081051;
+    }
+
+    /* Toggle menu visibility when checkbox is checked */
+    #menu-toggle:checked+.hamburger+.menu {
+        display: inline-block;
+    }
+
+    .navContainer {
+        justify-content: space-between;
+        width: 80%;
+    }
+
+    .DesktopIconContainer {
+        display: none;
+        /* hide icon on far right */
+    }
+
+    .mobileIconSection {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .mobileIconContainer a {
+        color: #081051;
+        font-size: 0.9rem;
+    }
+
+    .mobileIcon {
+        height: 17px;
+        width: 17px;
+        color: #081051;
+    }
+
+
+}

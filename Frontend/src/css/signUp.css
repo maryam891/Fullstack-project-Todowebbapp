@@ -1,0 +1,276 @@
+.Signup {
+    display: flex;
+    transform: translate(50%, 7%);
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    margin-bottom: 70px;
+    background-color: rgba(255, 255, 255, 0.413);
+    border-radius: 7px;
+}
+
+#signUpSection button {
+    height: 30px;
+    width: 70px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    background-color: #D2A8E2;
+    color: #081051;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#loginSection button:hover {
+    background-color: #cd9ae3f0;
+    border: none;
+    box-shadow: #191919 1px 1px 1px;
+}
+
+
+#signUpSection form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 670px;
+    width: 380px;
+
+}
+
+#signUpSection input {
+    width: 200px;
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 2px #081051;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#signUpSection label {
+    color: #081051;
+    padding-bottom: 5px;
+}
+
+#signUpSection {
+    padding-top: 40px;
+}
+
+#signUpSection h1 {
+    padding-bottom: 20px;
+    color: #081051;
+}
+
+
+
+.loginTextContainer {
+    margin-top: 30px;
+    height: 10px;
+    width: 180px;
+
+}
+
+.loginTextContainer p {
+    font-size: 0.9rem;
+    color: #081051;
+}
+
+.loginText {
+    font-size: 0.9rem;
+    color: #081051;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.imageSection img {
+    height: 150px;
+    width: 150px;
+}
+
+.imageSection {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+
+}
+
+
+@media screen and (max-width: 407px) and (min-width: 360px) {
+    .Signup {
+        width: 73%;
+        transform: translate(20%, 5%);
+    }
+
+    #signUpSection form {
+        height: 700px;
+        width: auto;
+
+    }
+
+    #signUpSection h1 {
+        text-align: center;
+    }
+
+    #signUpSection label {
+        align-self: flex-start;
+        padding-top: 10px;
+
+    }
+
+
+    #signUpSection button {
+        align-self: flex-start;
+
+    }
+
+    .imageSection {
+        height: 200px;
+
+    }
+}
+
+@media screen and (max-width: 500px) and (min-width: 407px) {
+    .Signup {
+        width: 70%;
+        transform: translate(20%, 5%);
+    }
+
+    #signUpSection form {
+        height: 720px;
+        width: auto;
+
+    }
+
+    #signUpSection h1 {
+        text-align: center;
+    }
+
+    #signUpSection label {
+        align-self: flex-start;
+        padding-top: 5px;
+
+    }
+
+    #signupSection button {
+        align-self: flex-start;
+    }
+
+    .imageSection {
+        height: 200px;
+
+    }
+}
+
+@media screen and (max-width: 646px) and (min-width:500px) {
+    .Signup {
+        width: 70%;
+        transform: translate(20%, 5%);
+    }
+
+    #signUpSection form {
+        height: 720px;
+        width: auto;
+
+    }
+
+    #signUpSection h1 {
+        text-align: center;
+    }
+
+    #signUpSection label {
+        align-self: flex-start;
+        padding-top: 10px;
+
+    }
+
+    #signUpSection button {
+        align-self: flex-start;
+    }
+
+    #signUpSection button {
+        width: 90px;
+        font-size: 1rem;
+    }
+
+    #signUpSection button {
+        width: 90px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .signUpTextContainer {
+        width: 200px;
+    }
+
+    .loginTextContainer p {
+        font-size: 1rem;
+    }
+
+    .loginText {
+        font-size: 1rem;
+    }
+
+    .imageSection {
+        height: 200px;
+
+    }
+}
+
+@media screen and (max-width:762px) and (min-width:646px) {
+    .Signup {
+        width: 70%;
+        transform: translate(20%, 5%);
+    }
+
+    #signUpSection button {
+        width: 90px;
+        font-size: 1rem;
+    }
+
+    .loginTextContainer p {
+        font-size: 1rem;
+    }
+
+    .loginText {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 869px) and (min-width:762px) {
+
+    .Signup {
+        width: 60%;
+        transform: translate(30%, 5%);
+    }
+
+    #signUpSection label {
+        align-self: flex-start;
+
+    }
+
+    #signUpSection button {
+        width: 90px;
+        font-size: 1rem;
+    }
+
+    .loginTextContainer p {
+        font-size: 1rem;
+    }
+
+    .loginText {
+        font-size: 1rem;
+    }
+}
+
+
+@media screen and (max-width: 924px) and (min-width:869px) {
+
+    .Signup {
+        width: 60%;
+        transform: translate(30%, 5%);
+    }
+
+
+}

@@ -1,0 +1,246 @@
+.Login {
+    display: flex;
+    transform: translate(66%, 10%);
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 40%;
+    width: 40%;
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.413);
+    border-radius: 7px;
+}
+
+.welcomePopup {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 7px;
+}
+
+.welcomePopup .modal-content {
+    background-color: transparent;
+    color: #081051;
+    border: none;
+    box-shadow: none;
+}
+
+
+#loginSection button {
+    height: 30px;
+    width: 70px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    background-color: #D2A8E2;
+    color: #081051;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#loginSection button:hover {
+    background-color: #cd9ae3f0;
+    border: none;
+    box-shadow: #191919 1px 1px 1px;
+}
+
+
+#loginSection form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 310px;
+    width: 310px;
+
+}
+
+#loginSection input {
+    width: 200px;
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 2px #081051;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#loginSection label {
+    color: #081051;
+    padding-bottom: 5px;
+}
+
+#loginSection {
+    padding-top: 40px;
+}
+
+#loginSection h1 {
+    padding-bottom: 20px;
+    color: #081051;
+}
+
+
+.signUpTextContainer {
+    margin-top: 30px;
+    height: 10px;
+    width: 180px;
+
+}
+
+.signUpTextContainer p {
+    font-size: 0.9rem;
+    color: #081051;
+}
+
+.signUpText {
+    font-size: 0.9rem;
+    color: #081051;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 407px) and (min-width: 360px) {
+
+    .welcomePopup {
+        position: relative;
+        left: 10%;
+        top: 20%;
+    }
+
+    .Login {
+        width: 70%;
+        transform: translate(20%, 10%);
+    }
+
+    #loginSection form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+        width: auto;
+
+    }
+
+    #loginSection h1 {
+        text-align: center;
+    }
+
+    #loginSection label {
+        align-self: flex-start;
+
+    }
+
+    #loginSection button {
+        align-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 500px) and (min-width: 407px) {
+
+    .welcomePopup {
+        position: relative;
+        left: 20%;
+        top: 20%;
+    }
+
+    .Login {
+        width: 70%;
+        transform: translate(20%, 10%);
+    }
+
+    #loginSection form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+        width: auto;
+
+    }
+
+    #loginSection h1 {
+        text-align: center;
+    }
+
+    #loginSection label {
+        align-self: flex-start;
+
+    }
+
+    #loginSection button {
+        align-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 646px) and (min-width:500px) {
+    .welcomePopup {
+        position: relative;
+        left: 25%;
+        top: 20%;
+    }
+
+    .Login {
+        width: 60%;
+        transform: translate(30%, 10%);
+    }
+
+    #loginSection form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+        width: auto;
+
+    }
+
+    #loginSection h1 {
+        text-align: center;
+    }
+
+    #loginSection label {
+        align-self: flex-start;
+
+    }
+
+    #loginSection button {
+        align-self: flex-start;
+    }
+}
+
+@media screen and (max-width:762px) and (min-width:646px) {
+    .welcomePopup {
+        position: relative;
+        left: 30%;
+        top: 20%;
+    }
+
+    .Login {
+        width: 54%;
+        transform: translate(50%, 10%);
+    }
+}
+
+@media screen and (max-width: 869px) and (min-width:762px) {
+
+    .welcomePopup {
+        position: relative;
+        left: 3%;
+        top: 20%;
+    }
+
+    .Login {
+        width: 44%;
+    }
+}
+
+
+@media screen and (max-width:762px) and (min-width:980px) {
+    .welcomePopup {
+        position: relative;
+        left: 3%;
+        top: 20%;
+    }
+
+}

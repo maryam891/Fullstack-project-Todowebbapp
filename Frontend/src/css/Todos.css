@@ -1,0 +1,1435 @@
+/*Todos logedin layout*/
+.Todos {
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-left: 20px;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: row;
+
+
+}
+
+.Todos h2 {
+    font-weight: 500;
+    padding-top: 15px;
+    color: #081051;
+}
+
+.todoModalContainer {
+    background-color: rgba(255, 255, 255, 0.48);
+    height: 600px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 20%;
+    flex-direction: column;
+    color: #081051;
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px
+}
+
+.todoModalContainer img {
+    height: 300px;
+    width: 300px;
+}
+
+.todoModalContainer p {
+    text-align: center;
+    padding-top: 10px;
+    width: 400px;
+    height: auto;
+}
+
+.todoContainer {
+    cursor: pointer;
+    height: 100%;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px
+}
+
+.todoContainer p {
+    position: relative;
+    top: 75%;
+    left: 5%;
+    color: #081051;
+    font-weight: 400;
+    width: 100px;
+}
+
+.todoContainer p:hover {
+    transform: scale(1.1);
+}
+
+
+.textContainer {
+    text-align: left;
+    width: 80%;
+    padding-top: 10px;
+}
+
+.textContainer h3 {
+    color: #081051;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.todoContainer h3 {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: #081051;
+}
+
+.completedTodoHeader {
+    display: grid;
+    grid-template-columns: 340px;
+    justify-content: right;
+    width: 95%;
+    height: 70px;
+}
+
+.closeTodo {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    left: 94%;
+    top: 1%;
+    cursor: pointer;
+}
+
+.completedTodoHeader h2 {
+    width: 360px;
+}
+
+.completedTodoHeader h3 {
+    font-weight: 500;
+    color: #081051;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.todoFlexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 30px;
+    gap: 20px;
+    width: 60%;
+    flex-wrap: wrap;
+    margin-left: 10px;
+}
+
+.dustbin {
+    position: relative;
+    left: 80%;
+    top: 4%;
+    color: #081051;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+}
+
+.dustbin:hover {
+    transform: scale(1.1);
+}
+
+.editPencil {
+    position: relative;
+    left: 74%;
+    top: 88%;
+    color: #081051;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+}
+
+.editPencil:hover {
+    transform: scale(1.1);
+}
+
+.todoImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.todoImgContainer img {
+    height: 200px;
+    width: 130px;
+}
+
+.todoButton {
+    height: 40px;
+    width: 120px;
+    font-size: 0.9rem;
+    background-color: white;
+    color: #081051;
+    border: solid 2px #D2A8E2;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+
+.todoButton:hover {
+    background-color: #D2A8E2;
+    border: none;
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+.todosTextBtnContainer {
+    display: flex;
+    width: 90%;
+    align-items: center;
+}
+
+
+.profileButton {
+    height: 40px;
+    width: 110px;
+    font-size: 0.9rem;
+    background-color: #D2A8E2;
+    color: #081051;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.profileButton:hover {
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+
+.Todos h1 {
+    font-weight: 400;
+    color: #081051;
+    text-align: left;
+}
+
+.Todos p {
+    font-size: 15px;
+    padding-top: 15px;
+    color: #081051;
+}
+
+.Todos input {
+    height: 17px;
+    width: 17px;
+    position: relative;
+    left: 5%;
+    top: 5%;
+    cursor: pointer;
+}
+
+.deletePopup .modal-content {
+    height: 300px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    outline: 0;
+    border-radius: 7px;
+    display: block;
+    align-items: center;
+    position: relative;
+    left: 15%;
+    top: 40%;
+}
+
+.delHeader,
+.delHeader2 {
+    color: #081051;
+}
+
+.deletePopup button:hover {
+    background-color: #cd9ae3f0;
+    border: none;
+    box-shadow: #191919 1px 1px 1px;
+}
+
+
+.deletePopup button {
+    margin-top: 15px;
+    margin-right: 5px;
+    height: 35px;
+    width: 100px;
+    font-size: 0.9rem;
+    background-color: white;
+    color: #081051;
+    border: solid 2px #D2A8E2;
+    border-radius: 9px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.addTodoInput {
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 2px #081051;
+    border-radius: 3px;
+    height: 30px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.addTodoTextArea {
+    margin-top: 10px;
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 2px #081051;
+    border-radius: 3px;
+    height: 150px;
+    width: 300px;
+}
+
+.addTodoContainer {
+    padding-left: 40px;
+    height: 100%;
+    width: 1000px;
+    transform: translate(10%, 5%);
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.413);
+    border-radius: 7px;
+
+}
+
+.addTodoBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.addTodoBtnContainer button {
+    height: 35px;
+    width: 90px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border: solid 2px #D2A8E2;
+    color: #081051;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.addTodoBtnContainer button:hover {
+    background-color: #D2A8E2;
+    border: none;
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+.todoLabel {
+    text-align: left;
+    color: #081051;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 40%;
+}
+
+.todolabel2 {
+    text-align: left;
+    color: #081051;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 90%;
+}
+
+.addTodoContainer h2 {
+    color: #081051;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.selectDateSection {
+    width: 220px;
+}
+
+.chooseImgText {
+    color: #081051;
+}
+
+.imageSelection {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 100%;
+    width: 90%;
+    gap: 40px;
+
+}
+
+.inputTextContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 270px;
+}
+
+.inputColumn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.imageOption img {
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+    transition: border 0.2s ease;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+.imageOption.selected img {
+    opacity: 100%;
+    background-color: #f2f2f4;
+    border: 2px solid #081051;
+    box-shadow: 0 0 10px rgba(8, 16, 81, 0.5);
+}
+
+/*Todos logedout layout*/
+
+.logedOutLayout h1 {
+    color: #081051;
+    text-align: center;
+}
+
+.logedOutLayout img {
+    height: 200px;
+    width: 200px;
+}
+
+.logedOutLayout {
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+    width: 90%;
+    flex-direction: column;
+}
+
+.logedOutImgContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.dateSection {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+}
+
+.dateSection label {
+    color: #081051;
+}
+
+.dateSection input {
+    margin-top: 10px;
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 2px #081051;
+}
+
+@media screen and (min-width: 598px) and (max-width: 832px) {
+
+    /*Todos logedin layout*/
+    .profileButton {
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .todoContainer {
+        height: 270px;
+        width: 280px;
+    }
+
+    .Todos {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+
+    }
+
+    .textContainer {
+        flex-direction: column;
+    }
+
+
+    .todosTextBtnContainer {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .textContainer {
+        width: 60%;
+    }
+
+    .completedTodoHeader h3 {
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .completedTodoHeader h2 {
+        margin-left: 10px;
+    }
+
+    .completedTodoHeader {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        height: 200px;
+        margin-top: 20px;
+
+    }
+
+
+    .dustbin {
+        height: 24px;
+        width: 24px;
+    }
+
+    .editPencil {
+        height: 24px;
+        width: 24px;
+    }
+
+    .Todos input {
+        height: 24px;
+        width: 24px;
+    }
+}
+
+
+
+@media screen and (min-width:360px) and (max-width:373px) {
+
+    /*Todos logedin layout*/
+
+    .deletePopup {
+        left: 10%;
+        top: 30%;
+    }
+
+    .addTodoContainer {
+        flex-direction: column;
+        width: 320px;
+        transform: translate(5%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+    .inputColumn input {
+        width: 200px;
+    }
+
+    .inputColumn textarea {
+        width: 220px;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 300px;
+    }
+
+    .selectDateSection {
+        width: 220px;
+    }
+
+    .addTodoContainer h2 {
+        text-align: left;
+    }
+
+    .completedTodoHeader {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        text-align: left;
+        height: 140px;
+    }
+
+
+    .completedTodoHeader h2 {
+        width: 330px;
+    }
+
+    .completedTodoHeader h3 {
+        text-align: left;
+    }
+
+    .todoButton {
+        width: 120px;
+
+    }
+
+    .profileButton {
+        width: 120px;
+    }
+
+    .todosTextBtnContainer {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        height: 300px;
+    }
+
+    .todoContainer {
+        width: 310px;
+    }
+
+    .todoFlexContainer {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .dustbin {
+        top: 2%;
+        height: 24px;
+        width: 24px;
+    }
+
+    .editPencil {
+        height: 24px;
+        width: 24px;
+        top: 84%;
+        left: 72%;
+    }
+
+    .Todos input {
+        height: 24px;
+        width: 24px;
+
+    }
+
+    .selectDateSection {
+        width: 220px;
+    }
+
+    /*Todos logedout layout*/
+    .logedOutLayout {
+        flex-wrap: wrap;
+    }
+
+    .logedOutImgContainer {
+        height: 50%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (min-width:360px) and (max-width:380px) {
+
+    /*Todos logedin layout*/
+
+    .addTodoContainer {
+        flex-direction: column;
+        width: 320px;
+        transform: translate(5%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+    .inputColumn input {
+        width: 200px;
+    }
+
+    .inputColumn textarea {
+        width: 220px;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 300px;
+    }
+
+    .selectDateSection {
+        width: 220px;
+    }
+
+    .addTodoContainer h2 {
+        text-align: left;
+    }
+
+    .deletePopup {
+        position: absolute;
+        left: -9%;
+        top: 30%;
+    }
+
+    .todoModalContainer {
+        height: 470px;
+        width: 300px;
+        left: 4%;
+    }
+
+    .todoModalContainer img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .todoModalContainer p {
+        text-align: center;
+        padding-top: 10px;
+        width: 200px;
+        height: auto;
+    }
+
+    .closeTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 88%;
+        top: 1%;
+    }
+}
+
+
+@media screen and (min-width:373px) and (max-width:577px) {
+
+    /*Todos logedin layout*/
+
+    .deletePopup {
+        position: absolute;
+        left: -5%;
+        top: 30%;
+    }
+
+    .todoContainer {
+        width: 300px;
+    }
+
+    .todoFlexContainer {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .completedTodoHeader h3 {
+        text-align: left;
+    }
+
+    .dustbin {
+        height: 24px;
+        width: 24px;
+        top: 2%
+    }
+
+    .editPencil {
+        height: 24px;
+        width: 24px;
+        top: 84%;
+        left: 72%;
+    }
+
+    .Todos input {
+        height: 24px;
+        width: 24px;
+
+    }
+
+    .Todos {
+        flex-direction: column;
+        width: 90%;
+
+
+    }
+
+    .completedTodoHeader {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        text-align: left;
+        height: 140px;
+    }
+
+
+    .completedTodoHeader h2 {
+        width: 300px;
+    }
+
+    .todosTextBtnContainer {
+        flex-wrap: wrap;
+        width: 90%;
+        height: 300px;
+    }
+
+    .addTodoContainer {
+        flex-direction: column;
+        width: 320px;
+        transform: translate(14%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+    .inputColumn input {
+        width: 200px;
+    }
+
+    .inputColumn textarea {
+        width: 220px;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 300px;
+    }
+
+    .selectDateSection {
+        width: 220px;
+    }
+
+    .addTodoContainer h2 {
+        text-align: left;
+    }
+
+    .todoModalContainer {
+        height: 470px;
+        width: 350px;
+        left: 4%;
+    }
+
+    .todoModalContainer img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .todoModalContainer p {
+        text-align: center;
+        padding-top: 10px;
+        width: 200px;
+        height: auto;
+    }
+
+    .closeTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 90%;
+        top: 1%;
+    }
+
+    /*Todos logedout layout*/
+    .logedOutLayout {
+        flex-wrap: wrap;
+    }
+
+    .logedOutImgContainer {
+        height: 60%;
+        width: 95%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+
+
+}
+
+
+@media screen and (min-width:577px) and (max-width:600px) {
+
+    /*Todos logedin layout*/
+    .deletePopup {
+        left: 5%;
+        top: 30%;
+    }
+
+    .profileButton {
+        margin-left: 30px;
+        width: 140px;
+    }
+
+    .Todos {
+        flex-direction: column;
+        width: 90%;
+
+
+    }
+
+    .todosTextBtnContainer {
+        height: 300px;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
+
+    .completedTodoHeader {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        text-align: left;
+        height: 120px;
+        width: 100%;
+    }
+
+    .completedTodoHeader h2 {
+        text-align: left;
+
+    }
+
+    .completedTodoHeader h3 {
+        text-align: left;
+        margin-left: 60px;
+    }
+
+    .todoButton {
+        width: 170px;
+
+    }
+
+    .todoFlexContainer {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .dustbin {
+        height: 24px;
+        width: 24px;
+    }
+
+    .editPencil {
+        height: 24px;
+        width: 24px;
+    }
+
+    .Todos input {
+        height: 24px;
+        width: 24px;
+
+    }
+
+    .todoContainer {
+        width: 340px;
+        height: 100%;
+    }
+
+    .addTodoContainer {
+        flex-direction: column;
+        width: 400px;
+        transform: translate(20%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 300px;
+    }
+
+    .addTodoContainer h2 {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    .todoModalContainer {
+        height: 460px;
+        width: 450px;
+        left: 10%;
+    }
+
+    .todoModalContainer img {
+        height: 250px;
+        width: 250px;
+    }
+
+    .todoModalContainer p {
+        text-align: center;
+        padding-top: 10px;
+        width: 400px;
+        height: auto;
+    }
+
+    .closeTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 92%;
+        top: 1%;
+    }
+
+}
+
+
+@media screen and (min-width:600px) and (max-width:879px) {
+
+    /*Todos logedin layout*/
+    .deletePopup {
+        left: 5%;
+        top: 30%;
+    }
+
+    .Todos {
+        flex-direction: column;
+
+    }
+
+    .todosTextBtnContainer {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .todoFlexContainer {
+        justify-content: left;
+    }
+
+    .todoContainer {
+        width: 380px;
+        height: 100%;
+    }
+
+    .dustbin {
+        height: 26px;
+        width: 26px;
+    }
+
+    .editPencil {
+        height: 26px;
+        width: 26px;
+        left: 74%;
+        top: 84%
+    }
+
+    .Todos input {
+        height: 26px;
+        width: 26px;
+
+    }
+
+    .todoImgContainer img {
+        width: 150px;
+    }
+
+    .todoImgContainer {
+        height: auto;
+        width: auto;
+    }
+
+    .completedTodoHeader {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        height: 120px;
+        width: 100%;
+
+    }
+
+    .completedTodoHeader h2 {
+        text-align: left;
+    }
+
+
+    .todoButton {
+        width: 130px;
+
+    }
+
+    .addTodoContainer {
+        flex-direction: column;
+        width: 500px;
+        transform: translate(17%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 400px;
+    }
+
+    .addTodoContainer h2 {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    .todoModalContainer {
+        height: 460px;
+        width: 450px;
+        left: 15%;
+    }
+
+    .todoModalContainer img {
+        height: 250px;
+        width: 250px;
+    }
+
+    .todoModalContainer p {
+        text-align: center;
+        padding-top: 10px;
+        width: 400px;
+        height: auto;
+    }
+
+    .closeTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 92%;
+        top: 1%;
+    }
+
+
+}
+
+@media screen and (min-width: 832px) and (max-width: 970px) {
+
+    /*Todos logedin layout*/
+    .todosTextBtnContainer {
+        display: flex;
+        justify-content: center;
+        width: 95%;
+        height: 100%;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+
+    .todoImgContainer img {
+        width: 160px;
+        padding-bottom: 10px;
+
+    }
+
+    .textContainer {
+        width: 64%;
+    }
+
+    .completedTodoHeader {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 130px;
+    }
+
+    .completedTodoHeader h2 {
+        width: 400px;
+        margin-left: 10px;
+    }
+
+    .completedTodoHeader h3 {
+        margin-left: 20px;
+    }
+
+
+    .todoContainer {
+        width: 380px;
+    }
+
+    .dustbin {
+        height: 24px;
+        width: 24px;
+    }
+
+    .editPencil {
+        height: 24px;
+        width: 24px;
+        left: 75%;
+        top: 84%
+    }
+
+    .Todos input {
+        height: 24px;
+        width: 24px;
+
+    }
+
+    .addTodoContainer {
+        flex-direction: column;
+        width: 500px;
+        transform: translate(40%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 400px;
+    }
+
+    .addTodoContainer h2 {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    .todoModalContainer {
+        height: 550px;
+        width: 550px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 20%;
+        flex-direction: column;
+    }
+
+    .todoModalContainer img {
+        height: 300px;
+        width: 300px;
+    }
+
+    .todoModalContainer p {
+        text-align: center;
+        padding-top: 10px;
+        width: 400px;
+        height: auto;
+    }
+
+    .closeTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 92%;
+        top: 1%;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width:970px) and (max-width:1111px) {
+    .addTodoContainer {
+        flex-direction: column;
+        width: 600px;
+        transform: translate(40%, 2%);
+
+    }
+
+    .imageSelection {
+        justify-content: center;
+        width: 90%;
+        gap: 20px;
+
+    }
+
+    .inputTextContainer {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .addTodoBtnContainer {
+        margin-top: 20px;
+        height: 60px;
+        justify-content: center;
+        gap: 10px
+    }
+
+    .inputColumn {
+        flex-direction: column;
+        width: 80%;
+    }
+
+
+    .dateSection {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 400px;
+    }
+
+    .addTodoContainer h2 {
+        padding-right: 20px;
+    }
+
+}

@@ -1,0 +1,520 @@
+/*Home logedin layout*/
+.HomeLogedIn {
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.HomeLogedIn button {
+    height: 40px;
+    width: 126px;
+    font-size: 0.9rem;
+    background-color: white;
+    color: #081051;
+    border: solid 2px #D2A8E2;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.HomeLogedIn button:hover {
+    background-color: #D2A8E2;
+    border: none;
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+.HomeLogedIn h2 {
+    font-weight: 500;
+    padding-top: 15px;
+    color: #081051;
+}
+
+
+.HomeLogedIn h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 300;
+    color: #081051;
+}
+
+.HomeLogedIn h1 {
+    font-weight: 400;
+    color: #081051;
+}
+
+.HomeLogedIn input {
+    height: 18px;
+    width: 18px;
+    margin-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.homePagetextbtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    width: 85%;
+    height: 200px;
+}
+
+.homeLoginHeaderSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.hompageloginTodoContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    margin-top: 30px;
+    gap: 20px;
+    width: 90%;
+}
+
+
+.homepageLoginImgContainer img {
+    height: 200px;
+    width: 120px;
+}
+
+.homepageLoginImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.homepageLoginTodoSection {
+    padding-top: 20px;
+    height: auto;
+    width: 265px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px;
+}
+
+/*Home loged out layout*/
+
+.HomeLogedOut {
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.textBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    width: 85%;
+    height: 200px;
+}
+
+.homeHeaderSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.HomeLogedOut h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 300;
+    color: #081051;
+}
+
+.HomeLogedOut h1 {
+    font-weight: 400;
+    color: #081051;
+}
+
+.HomeLogedOut h2 {
+    font-weight: 400;
+    padding-top: 15px;
+    color: #081051;
+}
+
+
+.HomeLogedOut button {
+    height: 40px;
+    width: 110px;
+    font-size: 1rem;
+    background-color: #D2A8E2;
+    margin-right: 10px;
+    color: #081051;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+
+}
+
+.HomeLogedOut button:hover {
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+.homePageTodoContainerLogedOut {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.homePageTodoSectionLogedOut {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 270px;
+    width: 270px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px;
+}
+
+
+/*Home Loged out layout*/
+
+.HomeLogedOut {
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.textBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    width: 85%;
+    height: 200px;
+}
+
+.homeHeaderSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.HomeLogedOut h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 300;
+    color: #081051;
+}
+
+.HomeLogedOut h1 {
+    font-weight: 400;
+    color: #081051;
+}
+
+.HomeLogedOut h2 {
+    font-weight: 400;
+    padding-top: 15px;
+    color: #081051;
+}
+
+
+.HomeLogedOut button {
+    height: 40px;
+    width: 110px;
+    font-size: 1rem;
+    background-color: #D2A8E2;
+    margin-right: 10px;
+    color: #081051;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+
+}
+
+.HomeLogedOut button:hover {
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+.homePageTodoContainerLogedOut {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.homePageTodoSectionLogedOut {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 270px;
+    width: 270px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px;
+}
+
+.homePageTodoImg {
+    height: 200px;
+    width: 150px;
+}
+
+
+
+@media screen and (min-width:360px) and (max-width:480px) {
+
+    /*Home logedout layout*/
+    .homePageTodoContainerLogedOut {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+        height: 100%;
+
+    }
+
+    .homePageTodoSectionLogedOut {
+        height: 300px;
+        width: 300px;
+
+    }
+
+    .homePageTodoImg {
+        height: 200px;
+        width: 200px;
+    }
+
+    .textBtnContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .textBtnContainer button {
+        margin-top: 30px;
+    }
+
+    /*Home logedin layout*/
+    .HomeLogedIn {
+        width: 100%;
+        justify-content: center;
+    }
+
+
+    .HomeLogedIn input {
+        height: 20px;
+        width: 20px;
+    }
+
+    .hompageloginTodoContainer {
+        justify-content: center;
+
+    }
+
+    .homepageLoginTodoSection {
+        height: 300px;
+        width: 300px;
+
+    }
+
+    .homepageLoginTodoImgContainer img {
+        height: 200px;
+        width: 140px;
+    }
+}
+
+@media screen and (min-width:480px) and (max-width:598px) {
+
+    /*Home logedout layout*/
+    .homePageTodoContainerLogedOut {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+        height: 100%;
+
+    }
+
+    .homePageTodoSectionLogedOut {
+        height: 300px;
+        width: 300px;
+
+    }
+
+    .homePageTodoImg {
+        height: 200px;
+        width: 200px;
+    }
+
+    .textBtnContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin-bottom: 20px;
+    }
+
+    .textBtnContainer button {
+        margin-top: 20px;
+    }
+
+    /*Home logedin layout*/
+    .HomeLogedIn {
+        width: 90%;
+        justify-content: center;
+    }
+
+
+    .HomeLogedIn input {
+        height: 20px;
+        width: 20px;
+    }
+
+    .hompageloginTodoContainer {
+        justify-content: center;
+
+    }
+
+    .homepageLoginTodoSection {
+        height: 350px;
+        width: 350px;
+
+    }
+
+    .homepageLoginTodoImgContainer img {
+        height: 200px;
+        width: 140px;
+    }
+
+}
+
+@media screen and (min-width: 598px) and (max-width: 680px) {
+
+    /*Home logedout layout*/
+
+    .homePageTodoContainerLogedOut {
+        margin-left: 20px;
+    }
+
+    .textBtnContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin-bottom: 20px;
+    }
+
+    .HomeLogedOut button {
+        margin-top: 30px;
+
+    }
+
+    .HomeLogedOut h3 {
+        padding: 10px;
+    }
+
+
+    /*Home logedin layout*/
+
+    .HomeLogedIn {
+        width: 90%;
+        justify-content: center;
+    }
+
+
+    .HomeLogedIn input {
+        height: 20px;
+        width: 20px;
+    }
+
+    .hompageloginTodoContainer {
+        justify-content: center;
+
+    }
+
+    .homepageLoginTodoSection {
+        height: 350px;
+        width: 350px;
+
+    }
+
+    .homepageLoginTodoImgContainer img {
+        height: 200px;
+        width: 140px;
+    }
+
+    .homePageTodoContainerLogedOut {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+@media screen and (min-width:680px) and (max-width:909px) {
+
+    /*Home logedout layout*/
+    .textBtnContainer {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100%;
+        width: 80%;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .textBtnContainer button {
+        margin-top: 10px;
+    }
+
+    .homePageTodoContainerLogedOut {
+        margin-left: 50px;
+    }
+
+
+    /*Home logedin layout*/
+    .HomeLogedIn {
+        width: 90%;
+    }
+
+
+    .HomeLogedIn input {
+        height: 19px;
+        width: 19px;
+    }
+
+}

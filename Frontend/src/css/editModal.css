@@ -1,0 +1,564 @@
+.editContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.editTodoModalContainer {
+    color: #081051;
+    background-color: rgba(255, 255, 255, 0.48);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 500px;
+    transform: translate(50%);
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.editTodoModalContainer p {
+    margin-top: 10px;
+}
+
+.editContainer h2 {
+    color: #081051;
+    margin-left: 20px;
+    text-align: left;
+    width: 200px;
+}
+
+
+
+.editTodoModalContainer img {
+    height: 300px;
+    width: 300px;
+}
+
+.editImageSelection {
+    height: 100%;
+    gap: 40px;
+    width: 90%;
+    margin-left: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.editTitleArea {
+    height: 100%;
+    width: 230px;
+    background-color: rgba(197, 195, 230, 0.326);
+    font-size: 17px;
+    border: solid 2px #081051;
+    border-radius: 3px;
+    padding: 10px 0px 10px 10px;
+    margin-top: 10px;
+    margin-left: 15px;
+    color: #081051;
+    text-align: center;
+}
+
+.editTextArea {
+    text-align: center;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 3px #081051;
+    font-size: 17px;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    color: #081051;
+}
+
+.editTodoLabel {
+    width: 220px;
+    margin-top: 10px;
+    margin-left: 10px;
+    align-self: center;
+    font-size: 1.615rem;
+}
+
+.editTodoBtnContainer {
+    display: flex;
+    justify-content: center;
+    width: 860px;
+    margin-top: 30px;
+}
+
+.editTodoBtnContainer button {
+    height: 35px;
+    width: 90px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border: solid 2px #D2A8E2;
+    color: #081051;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.closeEditTodo {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    left: 92%;
+    top: 1%;
+    cursor: pointer;
+}
+
+.editDateSection {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+}
+
+.changeImgLabel {
+    font-size: 1.615rem;
+    margin-top: 10px;
+    width: 200px;
+}
+
+.editDateSection label {
+    width: 220px;
+    color: #081051;
+    font-size: 1.615rem;
+}
+
+.editDateSection input {
+    margin-top: 10px;
+    background-color: rgba(197, 195, 230, 0.326);
+    border: solid 2px #081051;
+    color: #081051;
+    font-size: 17px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    width: 230px;
+}
+
+.changeImgText {
+    color: #081051;
+    font-size: 1.615rem;
+    position: relative;
+    left: 32%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+
+@media screen and (min-width: 360px) and (max-width:376px) {
+    .editTodoModalContainer {
+        transform: translate(2%);
+        margin-top: 0px;
+        margin-bottom: 30px;
+        width: 340px;
+    }
+
+
+    .editTitleArea {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+
+    .editTextArea {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    .editTodoLabel {
+        margin-top: 10px;
+        align-self: center;
+        width: 230px;
+        font-size: 1.5rem;
+    }
+
+    .editTodoBtnContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .editDateSection input {
+        font-size: 22px;
+        width: 230px;
+    }
+
+    .changeImgLabel {
+        font-size: 1.5rem;
+        width: 200px;
+    }
+
+    .changeImgText {
+        font-size: 1.5rem;
+        left: 30%;
+    }
+
+    .editImageSelection {
+        transform: translate(5%);
+        gap: 20px;
+        width: 75%;
+    }
+
+    .editTodoModalContainer img {
+        height: 130px;
+        width: 130px;
+    }
+
+    .closeEditTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 90%;
+    }
+}
+
+@media screen and (min-width:376px) and (max-width:459px) {
+    .editTodoModalContainer {
+        transform: translate(5%);
+        margin-top: 20px;
+        margin-bottom: 30px;
+        width: 350px;
+    }
+
+
+    .editTitleArea {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+
+    .editTextArea {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    .editTodoLabel {
+        margin-top: 10px;
+        align-self: center;
+        width: 230px;
+        font-size: 1.5rem;
+    }
+
+    .editTodoBtnContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .editDateSection input {
+        font-size: 22px;
+        width: 230px;
+    }
+
+    .changeImgLabel {
+        font-size: 1.5rem;
+        width: 200px;
+    }
+
+    .changeImgText {
+        font-size: 1.5rem;
+        left: 30%;
+    }
+
+    .editImageSelection {
+        transform: translate(5%);
+        gap: 20px;
+        width: 75%;
+    }
+
+    .editTodoModalContainer img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .closeEditTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 90%;
+    }
+}
+
+@media screen and (min-width: 459px) and (max-width:552px) {
+    .editTodoModalContainer {
+        transform: translate(10%);
+        margin-top: 0px;
+        margin-bottom: 30px;
+        width: 400px;
+    }
+
+    .editContainer h2 {
+        margin-left: 20px;
+        text-align: center;
+        width: 230px;
+    }
+
+
+    .editTitleArea {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+
+    .editTextArea {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    .editTodoLabel {
+        margin-top: 10px;
+        align-self: center;
+        width: 230px;
+        font-size: 1.5rem;
+    }
+
+    .editTodoBtnContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .editDateSection input {
+        font-size: 22px;
+        width: 230px;
+    }
+
+    .changeImgLabel {
+        font-size: 1.5rem;
+        width: 200px;
+    }
+
+    .changeImgText {
+        font-size: 1.5rem;
+        left: 30%;
+    }
+
+    .editImageSelection {
+        transform: translate(5%);
+        gap: 20px;
+        width: 75%;
+    }
+
+    .editTodoModalContainer img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .closeEditTodo {
+        height: 35px;
+        width: 35px;
+    }
+
+}
+
+@media screen and (min-width: 552px) and (max-width:700px) {
+    .editTodoModalContainer {
+        transform: translate(10%);
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .editContainer h2 {
+        margin-left: 20px;
+        text-align: center;
+        width: 230px;
+    }
+
+
+    .editTitleArea {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .editTextArea {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .editTodoLabel {
+        margin-top: 10px;
+        align-self: center;
+        width: 230px;
+        font-size: 1.620rem;
+    }
+
+    .editTodoBtnContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .editDateSection input {
+        font-size: 20px;
+        width: 230px;
+    }
+
+    .changeImgLabel {
+        font-size: 1.620rem;
+        width: 200px;
+    }
+
+    .changeImgText {
+        font-size: 1.620rem;
+        left: 42%;
+    }
+
+    .editImageSelection {
+        transform: translate(5%);
+        gap: 20px;
+        width: 75%;
+    }
+
+    .editTodoModalContainer img {
+        height: 200px;
+        width: 200px;
+    }
+
+
+    .closeEditTodo {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+
+@media screen and (min-width: 700px) and (max-width: 832px) {
+
+    .editTodoModalContainer {
+        width: 500px;
+        transform: translate(30%);
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .editContainer h2 {
+        margin-left: 20px;
+        text-align: center;
+        width: 230px;
+    }
+
+
+    .editTitleArea {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .editTextArea {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .editTodoLabel {
+        margin-top: 10px;
+        align-self: center;
+        width: 230px;
+        font-size: 1.620rem;
+    }
+
+    .editTodoBtnContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .editDateSection input {
+        font-size: 20px;
+        width: 230px;
+    }
+
+    .changeImgLabel {
+        font-size: 1.620rem;
+        width: 200px;
+    }
+
+    .changeImgText {
+        font-size: 1.620rem;
+        left: 42%;
+    }
+
+    .editImageSelection {
+        transform: translate(10%);
+        gap: 20px;
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 832px) and (max-width: 970px) {
+
+    .editTodoModalContainer {
+        width: 500px;
+        transform: translate(40%);
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .editContainer h2 {
+        margin-left: 20px;
+        text-align: center;
+        width: 200px;
+    }
+
+
+    .editTitleArea {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    .editTextArea {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .editTodoLabel {
+        margin-top: 10px;
+        align-self: center;
+        width: 230px;
+        font-size: 1.620rem;
+    }
+
+    .editTodoBtnContainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .editDateSection input {
+        font-size: 20px;
+        width: 230px;
+    }
+
+    .changeImgText {
+        font-size: 1.620rem;
+        width: 200px;
+    }
+
+    .changeImgText {
+        font-size: 1.620rem;
+        left: 35%;
+    }
+
+    .editImageSelection {
+        transform: translate(10%);
+        gap: 20px;
+        width: 70%;
+    }
+}
+
+@media screen and (min-width:970px) and (min-width:1476px) {
+    .changeImgText {
+        left: 25%;
+    }
+}

@@ -1,0 +1,82 @@
+body {
+  background: linear-gradient(#91a5f35e, #cea4de78, rgba(230, 225, 225, 0.621));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+p {
+  font-size: 1.123rem;
+}
+
+h1 {
+  font-size: 2.23rem;
+}
+
+h2 {
+  font-size: 1.873rem;
+}
+
+h3 {
+  font-size: 1.622rem;
+}
+
+
+@media screen and (min-width: 360px) and (max-width: 768px) {
+  h1 {
+    font-size: 1.625rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  p {
+    font-size: 1rem;
+
+  }
+
+
+}
+
+
+@media screen and (min-width: 768.1px) and (max-width: 980px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 980.1px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+  }
+
+  h3 {
+    font-size: 1.625rem;
+  }
+}
