@@ -128,7 +128,7 @@ export default function Todos() {
     {/*Send clicked id to backend to delete todo*/ }
     function removeTodo(id: number) {
         fetch('http://localhost:3000/DeleteTodo', {
-            method: 'POST',
+            method: 'DELETE',
             body: JSON.stringify({ id: id }),
             headers: {
                 'Content-type': 'application/json',
@@ -189,70 +189,66 @@ export default function Todos() {
             });
 
     }
+    {/*Show addTodoContainer when clicking on add todo button*/ }
+    if (showAddTodoContainer === true) {
+        return <section className="addTodoContainer">
+            <h2>Add a new todo</h2>
+            <div className="inputTextContainer">
+                <div className="inputColumn">
+                    <Form.Label className="todoLabel">Todo name:</Form.Label>
+                    <Form.Control type="text" name="Enter Todo" className="addTodoInput" value={addTodoTitle} onChange={(event) => {
+                        setAddTodoTitle(event.target.value)
+                    }} />
+                </div>
 
+                <div className="inputColumn">
+                    <Form.Label className="todoLabel">Description(Optional):</Form.Label>
+                    <Form.Control as="textarea" rows={3} className="addTodoTextArea" value={addTodoText} onChange={(event) => {
+                        setAddTodoText(event.target.value)
+                    }} />
+                </div>
+            </div>
+
+            <div className="imageSelection">
+
+                <form className="dateSection">
+                    <label>Choose date and time:</label>
+                    <DatePicker
+                        className="selectDateSection"
+                        selected={selectedDateTime}
+                        onChange={() => setSelectedDateTime(selectedDateTime)}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        timeCaption="time"
+                        dateFormat="MMMM d, yyyy h:mm aa"
+                    />
+                </form>
+                <label className="chooseImgText">Choose image(Optional):</label>
+                {GetImages && GetImages.map((img, index) => (
+                    //Check if image that is clicked is equal to img.id to show image background when selecting img else default styling
+                    <label className={selectedImg === img.id ? "imageOption selected" : "imageOption"} key={index}>
+                        <input type="radio" name="img" checked={selectedImg === img.id} value={img.id} style={{ opacity: '0' }} onChange={(e) => {
+                            //Convert to number to compare same values
+                            setSelectedImg(Number(e.currentTarget.value))
+                        }}>
+                        </input>
+                        <img src={img.image} className="todoImage" />
+
+                    </label>
+                ))}
+
+            </div>
+            <div className="addTodoBtnContainer">
+                <button onClick={saveTodo}>Save</button>
+                <button onClick={() => {
+                    setShowAddTodoContainer(false)
+                }}>Cancel</button>
+            </div>
+        </section>
+    }
     return (
         <>
-
-            {/*Show addTodoContainer when clicking on add todo button*/}
-            {showAddTodoContainer && (
-                <section className="addTodoContainer">
-                    <h2>Add a new todo</h2>
-                    <div className="inputTextContainer">
-                        <div className="inputColumn">
-                            <Form.Label className="todoLabel">Todo name:</Form.Label>
-                            <Form.Control type="text" name="Enter Todo" className="addTodoInput" value={addTodoTitle} onChange={(event) => {
-                                setAddTodoTitle(event.target.value)
-                            }} />
-                        </div>
-
-                        <div className="inputColumn">
-                            <Form.Label className="todoLabel">Description(Optional):</Form.Label>
-                            <Form.Control as="textarea" rows={3} className="addTodoTextArea" value={addTodoText} onChange={(event) => {
-                                setAddTodoText(event.target.value)
-                            }} />
-                        </div>
-                    </div>
-
-                    <div className="imageSelection">
-
-                        <form className="dateSection">
-                            <label>Choose date and time:</label>
-                            <DatePicker
-                                className="selectDateSection"
-                                selected={selectedDateTime}
-                                onChange={() => setSelectedDateTime(selectedDateTime)}
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={15}
-                                timeCaption="time"
-                                dateFormat="MMMM d, yyyy h:mm aa"
-                            />
-                        </form>
-                        <label className="chooseImgText">Choose image(Optional):</label>
-                        {GetImages && GetImages.map((img, index) => (
-                            //Check if image that is clicked is equal to img.id to show image background when selecting img else default styling
-                            <label className={selectedImg === img.id ? "imageOption selected" : "imageOption"} key={index}>
-                                <input type="radio" name="img" checked={selectedImg === img.id} value={img.id} style={{ opacity: '0' }} onChange={(e) => {
-                                    //Convert to number to compare same values
-                                    setSelectedImg(Number(e.currentTarget.value))
-                                }}>
-                                </input>
-                                <img src={img.image} className="todoImage" />
-
-                            </label>
-                        ))}
-
-                    </div>
-                    <div className="addTodoBtnContainer">
-                        <button onClick={saveTodo}>Save</button>
-                        <button onClick={() => {
-                            setShowAddTodoContainer(false)
-                        }}>Cancel</button>
-                    </div>
-                </section>
-            )}
-
-
             {/*Check if user is logged in to show loggedin layout else show other layout*/}
             {
                 User?.isLoggedIn === true ?

@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { AuthStatusContext } from "../AuthContext";
 import { useContext } from "react";
 import "../css/signUp.css"
 import { CiUser } from "react-icons/ci";
+import Modal from 'react-bootstrap/Modal';
 
 export default function SignUp() {
+    const [userSignedUpPopUp, setUserSignedUpPopUp] = useState(false)
     const Auth = useContext(AuthStatusContext)
     const [signUpForm, setSignUpForm] = useState({
         email: "",
@@ -85,9 +87,9 @@ export default function SignUp() {
                             })
                         }
 
-                        alert("Welcome!")
+                        setUserSignedUpPopUp(true)
                         setFieldErrors({ emailField: true, passwordField: true, confirmPasswordField: true, nameField: true })
-                        navigate("/Profile")
+
                     }
                     else {
                         alert("wrong password or email")
@@ -113,10 +115,26 @@ export default function SignUp() {
         }
 
     }
-
+    //Show welcome modal for a few seconds and navigate to profile page when user is signed up
+    useEffect(() => {
+        if (!userSignedUpPopUp) return;
+        const timer = setTimeout(() => {
+            setUserSignedUpPopUp(false); navigate("/Profile")
+        }, 1400);
+        //Return clearTimeout if timer unmounts
+        return () => clearTimeout(timer)
+    }, [userSignedUpPopUp, navigate])
     return (
         <>
             <main className="Signup">
+                <Modal show={userSignedUpPopUp === true}>
+                    <Modal.Header>
+                        <Modal.Title>Welcome!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Welcome {signUpForm.name}!
+                    </Modal.Body>
+                </Modal>
                 <section id="signUpSection">
                     <h1>Sign Up</h1>
                     <form>

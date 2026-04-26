@@ -16,12 +16,31 @@ export interface User {
   userId: number;
 
 }
+const router = createHashRouter([
+  {
+    element: (
+      <>
+        <NavBar />
+        <Outlet />
+        <Footer />
+      </>
+    ),
+    children: [
+      { element: <Home />, path: "/" },
+      { element: <Todos />, path: "/Todos" },
+      { element: <Login />, path: "/Login" },
+      { element: <Profile />, path: "/Profile" },
+      { element: <SignUp />, path: "/SignUp" }
+    ],
+  },
 
+]);
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true)
 
   const login = (user: User) => {
     setCurrentUser(user);
@@ -38,13 +57,14 @@ function App() {
     setCurrentUser(user);
     setIsLoggedIn(true);
     localStorage.setItem("userId", JSON.stringify(user.userId));
-    localStorage.setItem("userEmailValue", JSON.stringify(user.email));
+    localStorage.setItem("userEmail", JSON.stringify(user.email));
     localStorage.setItem("userNameValue", JSON.stringify(user.name || ""));
     localStorage.setItem("isLoggedIn", JSON.stringify(true));
   };
 
   const logout = () => {
     setCurrentUser({ email: "", password: "", userId: 0, name: "" });
+    localStorage.clear()
     setIsLoggedIn(false);
   };
 
@@ -64,30 +84,13 @@ function App() {
 
       });
       setIsLoggedIn(true);
+      setIsLoading(false)
     }
   }, []);
 
-  const router = createHashRouter([
-    {
-      element: (
-        <>
-          <NavBar />
-          <Outlet />
-          <Footer />
-        </>
-      ),
-      children: [
-        { element: <Home />, path: "/" },
-        { element: <Todos />, path: "/Todos" },
-        { element: <Login />, path: "/Login" },
-        { element: <Profile />, path: "/Profile" },
-        { element: <SignUp />, path: "/SignUp" }
-      ],
-    },
 
-  ]);
 
-  return <AuthStatusContext.Provider value={{ currentUser, logout, login, signup, isLoggedIn }}><RouterProvider router={router} />
+  return <AuthStatusContext.Provider value={{ currentUser, logout, login, signup, isLoggedIn, isLoading }}><RouterProvider router={router} />
   </AuthStatusContext.Provider>
 
 }

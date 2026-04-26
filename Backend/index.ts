@@ -26,7 +26,7 @@ app.use(express.json());
 app.post("/Login", async (request, response) => {
   let logedInUsers = await database.all(
     "SELECT * FROM Users WHERE Email = ? AND Password = ?",
-    [request.body.Email, request.body.Password]
+    [request.body.Email, request.body.Password],
   );
   //Check if email and password value is more than 0 to login
   if (logedInUsers.length > 0) {
@@ -43,7 +43,7 @@ app.listen(3000, () => {
 app.post("/SignUp", async (request, response) => {
   let signedUpUsers = await database.run(
     "INSERT INTO Users(Email, Password, Name) VALUES(?,?, ?)",
-    [request.body.Email, request.body.Password, request.body.Name]
+    [request.body.Email, request.body.Password, request.body.Name],
   );
   //Check if email, name and password value is more than 0 to sign up
   if (signedUpUsers) {
@@ -67,7 +67,7 @@ app.listen(3000, () => {
 app.post("/Profile", async (request, response) => {
   let userId = await database.get(
     "SELECT Name, user_img FROM Users WHERE id=?",
-    [request.body.id]
+    [request.body.id],
   );
   if (userId) {
     response.status(200).send(userId);
@@ -80,11 +80,23 @@ app.listen(3000, () => {
   console.log("Webbtjänsten kan nu ta emot anrop.");
 });
 
+//Remove user account
+app.delete("/removeAccount", async (request, response) => {
+  let removeAcc = await database.run("DELETE FROM Users WHERE id=?", [
+    request.body.id,
+  ]);
+  if (removeAcc) {
+    response.status(200).send();
+  } else {
+    response.status(400).send({ message: "Failed to delete" });
+  }
+});
+
 //Get all todos of user that is logged in and use inner join to join todoImages table with TODOS table to get images to the TODOS table of the todos that already exists
 app.post("/Todos", async (request, response) => {
   let todos = await database.all(
     "SELECT TODOS.id,TODOS.Todos, TODOS.completed_todo, TODOS.todo_description,TODOS.user_id,TODOS.image_id, TODOS.chosen_date, todoImages.image FROM TODOS INNER JOIN todoImages ON TODOS.image_id = todoImages.id WHERE user_id = ?",
-    [request.body.id]
+    [request.body.id],
   );
 
   if (todos) {
@@ -103,7 +115,7 @@ app.listen(3000, () => {
 app.post("/updateCompletedTodos", async (request, response) => {
   let completedTodo = await database.run(
     "UPDATE TODOS SET completed_todo = ? WHERE id = ? AND user_id=?",
-    [request.body.completed_todo, request.body.id, request.body.user_id]
+    [request.body.completed_todo, request.body.id, request.body.user_id],
   );
   if (completedTodo) {
     response.status(200).send();
@@ -117,7 +129,7 @@ app.listen(3000, () => {
 });
 
 //Delete one todo when clicking on dustbin
-app.post("/DeleteTodo", async (request, response) => {
+app.delete("/DeleteTodo", async (request, response) => {
   let deleteTodo = await database.run("DELETE FROM TODOS WHERE id=?", [
     request.body.id,
   ]);
@@ -137,7 +149,7 @@ app.listen(3000, () => {
 app.post("/Home", async (request, response) => {
   let todos = await database.all(
     "SELECT TODOS.id,TODOS.Todos,TODOS.todo_description,TODOS.user_id, TODOS.image_id,todoImages.image FROM TODOS INNER JOIN todoImages ON TODOS.image_id = todoImages.id WHERE user_id = ?",
-    [request.body.id]
+    [request.body.id],
   );
   if (todos) {
     response.status(200).send(todos);
@@ -175,7 +187,7 @@ app.post("/addNewTodo", async (request, response) => {
       request.body.image_id,
       request.body.user_id,
       request.body.chosen_date,
-    ]
+    ],
   );
 
   if (addTodo) {
@@ -213,7 +225,7 @@ app.put("/editTodo", async (request, response) => {
       request.body.chosen_date,
       request.body.id,
       request.body.user_id,
-    ]
+    ],
   );
 
   if (editTodo) {

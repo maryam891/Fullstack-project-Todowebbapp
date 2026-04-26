@@ -10,6 +10,47 @@
     border-radius: 7px;
 }
 
+.yesDelBtn {
+    background-color: white;
+    color: #081051;
+    border: solid 2px #D2A8E2;
+}
+
+.yesDelBtn:hover {
+    background-color: #D2A8E2;
+    color: #081051;
+    border: none;
+    transform: scale(1.1);
+}
+
+.noDelBtn {
+    background-color: white;
+    color: #081051;
+    border: solid 2px #211e6c;
+
+}
+
+.noDelBtn:hover {
+    transform: scale(1.1);
+    background-color: #081051;
+    color: white;
+    border: none;
+}
+
+.delBtnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: auto;
+}
+
+.delBtnContainer button {
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .profileContainer {
     display: flex;
     flex-direction: column;
@@ -84,6 +125,7 @@
     cursor: pointer;
 }
 
+
 .logOutBtn:hover {
     background-color: #cd9ae3f0;
     border: none;
@@ -98,6 +140,7 @@
 }
 
 .deleteBtn {
+    margin-bottom: 20px;
     font-size: 13px;
     height: 20px;
     color: #2b39a5;

@@ -6,6 +6,7 @@ export interface AuthContextType {
   signup: (user: User) => void;
   login: (user: User) => void;
   logout: () => void;
+  isLoading: boolean;
 }
 
 interface User {

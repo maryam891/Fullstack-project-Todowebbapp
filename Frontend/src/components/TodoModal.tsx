@@ -7,8 +7,6 @@ export interface TodoModalProps {
     setModalOpen: (value: boolean) => void
 }
 export default function TodoModal({ clickedTodo, modalOpen, setModalOpen }: TodoModalProps) {
-
-
     return (
         <>
             {modalOpen && clickedTodo &&

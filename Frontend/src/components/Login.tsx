@@ -29,7 +29,7 @@ export default function Login() {
         if (User?.isLoggedIn) {
             setTimeout(() => navigate("/Profile"), 1400);
         }
-    }, [User?.isLoggedIn]);
+    }, [User?.isLoggedIn, navigate]);
 
 
     {/*Change border color of input based on empty and non empty field*/ }

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import todoImage from "../assets/todoImage.svg"
 import seeProgressicon from "../assets/progressIcon.svg"
 import addSticker from "../assets/addSticker.svg"
+import Spinner from 'react-bootstrap/Spinner';
 
 
 export interface Home {
@@ -23,7 +24,6 @@ export default function Home() {
     const navigate = useNavigate();
     //Use values from useContext
     const user = useContext(AuthStatusContext)
-    const [logStatus, setLogStatus] = useState(false)
     const [userInfo, setUserInfo] = useState<Home[]>([])
     const [userName, setGetUserName] = useState(null)
 
@@ -46,13 +46,7 @@ export default function Home() {
                 })
         }
 
-
     }, [user])
-
-
-    useEffect(() => {
-        setLogStatus(user?.isLoggedIn === true)
-    }, [user?.isLoggedIn])
 
     useEffect(() => {
         fetch('http://localhost:3000/Home', {
@@ -72,10 +66,16 @@ export default function Home() {
 
     }, [user])
 
+    //Show loading spinner when refreshing page when loading === true
+    if (user?.isLoading) {
+        return <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </Spinner>
+    }
     return (
         <>
             {/*Check if the user is loged in to show logedin layout else show other layout*/}
-            {logStatus === true ?
+            {user?.isLoggedIn === true ?
                 <main className="HomeLogedIn">
                     <div className="homePagetextbtnContainer">
                         <div className="homeLoginHeaderSection">
@@ -83,9 +83,10 @@ export default function Home() {
                                 {/*Render name of user that is logged in*/}
                                 Welcome {userName}!
                             </h1>
-                            {userInfo !== null ? <h2>
+                            {userInfo.length < 0 ? <h2>
                                 Here are your todos
                             </h2> : <h2>You don't have any todos, start adding todos!</h2>}
+                            <button style={{ marginTop: "10px" }}>Todos</button>
                         </div>
                     </div>
                     <div className="hompageloginTodoContainer">
