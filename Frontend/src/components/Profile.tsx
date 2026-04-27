@@ -103,7 +103,7 @@ export default function Profile() {
 
                         <form>
                             <label>Email</label>
-                            <input type="text" name="email" defaultValue={Auth.currentUser.email} ></input>
+                            <input type="text" name="email" defaultValue={Auth.currentUser.email} readOnly ></input>
                         </form>
                         <div className="btnContainer">
                             <button className="logOutBtn" type="submit" onClick={() => {

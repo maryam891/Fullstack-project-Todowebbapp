@@ -91,6 +91,9 @@ app.delete("/removeAccount", async (request, response) => {
     response.status(400).send({ message: "Failed to delete" });
   }
 });
+app.listen(3000, () => {
+  console.log("Webbtjänsten kan nu ta emot anrop.");
+});
 
 //Get all todos of user that is logged in and use inner join to join todoImages table with TODOS table to get images to the TODOS table of the todos that already exists
 app.post("/Todos", async (request, response) => {
@@ -213,7 +216,9 @@ app.post("/UserName", async (request, response) => {
     response.status(400).send({ message: "No such user" });
   }
 });
-
+app.listen(3000, () => {
+  console.log("Webbtjänsten kan nu ta emot anrop.");
+});
 //Edit todo that matches id of user that is logged in and id of todo
 app.put("/editTodo", async (request, response) => {
   let editTodo = await database.run(
@@ -234,4 +239,7 @@ app.put("/editTodo", async (request, response) => {
   } else {
     response.status(400).send({ message: "Failed to edit todo" });
   }
+});
+app.listen(3000, () => {
+  console.log("Webbtjänsten kan nu ta emot anrop.");
 });

@@ -83,10 +83,8 @@ export default function Home() {
                                 {/*Render name of user that is logged in*/}
                                 Welcome {userName}!
                             </h1>
-                            {userInfo.length < 0 ? <h2>
-                                Here are your todos
-                            </h2> : <h2>You don't have any todos, start adding todos!</h2>}
-                            <button style={{ marginTop: "10px" }} onClick={() => navigate("/Todos")}>Todos</button>
+                            {userInfo.length > 0 ? <h2>Here are your todos</h2> : <div style={{ height: "500px" }}><h2>You don't have any todos, start adding todos!</h2> <button className="homeTodosBtn" style={{ marginTop: "10px" }} onClick={() => navigate("/Todos")}>Todos</button></div>}
+
                         </div>
                     </div>
                     <div className="hompageloginTodoContainer">
@@ -119,7 +117,7 @@ export default function Home() {
                             </h2>
                         </div>
                         <div>
-                            <button onClick={() => {
+                            <button className="HomeLogedInBtn" onClick={() => {
                                 navigate("/SignUp")
                             }}>Get started</button>
                         </div>

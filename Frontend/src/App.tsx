@@ -84,8 +84,9 @@ function App() {
 
       });
       setIsLoggedIn(true);
-      setIsLoading(false)
+
     }
+    setIsLoading(false)
   }, []);
 
 

@@ -5,6 +5,8 @@ import { AuthStatusContext } from "../AuthContext";
 import { useContext } from "react";
 import { Modal } from "react-bootstrap"
 
+
+
 export default function Login() {
     const User = useContext(AuthStatusContext)
     const [loginForm, setLoginForm] = useState({
@@ -113,7 +115,7 @@ export default function Login() {
                     {showPopUp &&
                         <Modal show={showPopUp} dialogClassName="welcomePopup">
                             <Modal.Header>
-                                <Modal.Title>Welcome back!</Modal.Title>
+                                <Modal.Title>Welcome back {User?.currentUser?.name}!</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <Modal.Title>

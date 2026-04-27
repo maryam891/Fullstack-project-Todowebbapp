@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-.HomeLogedIn button {
+.HomeLogedInBtn {
     height: 40px;
     width: 126px;
     font-size: 0.9rem;
@@ -46,6 +46,23 @@
     color: #081051;
 }
 
+.homeTodosBtn {
+    height: 40px;
+    width: 126px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    background-color: #D2A8E2;
+    color: #081051;
+    font-weight: 400;
+}
+
+.homeTodosBtn:hover {
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
 .HomeLogedIn input {
     height: 18px;
     width: 18px;
@@ -62,7 +79,7 @@
     align-items: center;
     margin-top: 20px;
     width: 85%;
-    height: 200px;
+    min-height: 200px;
 }
 
 .homeLoginHeaderSection {
