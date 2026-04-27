@@ -86,7 +86,7 @@ export default function Home() {
                             {userInfo.length < 0 ? <h2>
                                 Here are your todos
                             </h2> : <h2>You don't have any todos, start adding todos!</h2>}
-                            <button style={{ marginTop: "10px" }}>Todos</button>
+                            <button style={{ marginTop: "10px" }} onClick={() => navigate("/Todos")}>Todos</button>
                         </div>
                     </div>
                     <div className="hompageloginTodoContainer">
