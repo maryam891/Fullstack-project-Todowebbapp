@@ -15,4 +15,4 @@ with fun images to keep things engaging.
 ## ✨ Features
 
 - ✅ Add, edit and delete todos
-- 🎨 Personalize todos with fun stickers
+- 🎨 Personalize todos with fun images
