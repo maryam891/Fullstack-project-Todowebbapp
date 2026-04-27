@@ -2,7 +2,7 @@
 
 A full-stack Todo web application built with React, TypeScript, Node.js, and SQLite.
 Manage your tasks effortlessly – add, edit, and delete todos, and personalize them
-with fun stickers to keep things engaging.
+with fun images to keep things engaging.
 
 ## 🛠️ Tech Stack
 
@@ -15,4 +15,4 @@ with fun stickers to keep things engaging.
 ## ✨ Features
 
 - ✅ Add, edit and delete todos
-- 🎨 Personalize todos with fun stickers
+- 🎨 Personalize todos with fun images
