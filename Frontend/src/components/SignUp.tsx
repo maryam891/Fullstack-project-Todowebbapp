@@ -17,59 +17,98 @@ export default function SignUp() {
 
     })
 
-
     const [fieldErrors, setFieldErrors] = useState({
-        emailField: true,
-        passwordField: true,
-        confirmPasswordField: true,
-        nameField: true
+        emailField: false,
+        passwordField: false,
+        confirmPasswordField: false,
+        nameField: false,
+
     });
+    const [tooShort, setTooShort] = useState({
+        nameShort: false,
+        emailShort: false,
+        passwordShort: false,
+        confirmPasswordShort: false
+    })
+    const [failedSignUpPopUpShow, setShowFailedSignUpPopUp] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
 
     const navigate = useNavigate();
 
     /*Change border color of input based on empty and non empty field*/
     const styles = {
         emailInput: {
-            border: fieldErrors.emailField ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (!submitted || fieldErrors.emailField || tooShort?.emailShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
         },
         passwordInput: {
-            border: fieldErrors.passwordField ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (!submitted || fieldErrors.passwordField || tooShort?.passwordShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
         },
 
         confirmPasswordInput: {
-            border: fieldErrors.passwordField ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (!submitted || fieldErrors.passwordField || tooShort?.confirmPasswordShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
         },
 
         nameInput: {
-            border: fieldErrors.nameField ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (!submitted || fieldErrors.nameField || tooShort?.nameShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
         }
     };
 
-    /*Sign up function for sign up button*/
+
+    /*Sign up function*/
     function signup(event: React.MouseEvent) {
         event.preventDefault()
+        setSubmitted(true)
+        // Validate all fields first
+        const nameEmpty = signUpForm.name.trim().length === 0
+        const emailEmpty = signUpForm.email.trim().length === 0
+        const passwordEmpty = signUpForm.password.trim().length === 0
+        const confirmPasswordEmpty = signUpForm.confirmPassword.trim().length === 0
 
+        const nameTooShort = signUpForm.name.trim().length > 0 && signUpForm.name.trim().length <= 2
+        const emailTooShort = signUpForm.email.trim().length > 0 && signUpForm.email.trim().length < 11
+        const passwordTooShort = signUpForm.password.trim().length > 0 && signUpForm.password.trim().length < 8
+        const passwordMismatch = signUpForm.password !== signUpForm.confirmPassword
+
+        // Update fieldErrors
+        setFieldErrors({
+            nameField: !nameEmpty,
+            emailField: !emailEmpty,
+            passwordField: !passwordEmpty,
+            confirmPasswordField: !confirmPasswordEmpty
+        })
+
+        // Update tooShort
+        setTooShort({
+            nameShort: nameTooShort,
+            emailShort: emailTooShort,
+            passwordShort: passwordTooShort,
+            confirmPasswordShort: signUpForm.confirmPassword.trim().length > 0 && signUpForm.confirmPassword.trim().length < 8 || passwordMismatch
+        })
+
+        // Stop if something is wrong
+        if (nameEmpty || emailEmpty || passwordEmpty || confirmPasswordEmpty || nameTooShort || emailTooShort || passwordTooShort || passwordMismatch) {
+            setShowFailedSignUpPopUp(true)
+            return
+        }
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ Email: signUpForm.email, Password: signUpForm.password, Name: signUpForm.name })
         }
-        //Check if password does not match with confirm password
-        if (signUpForm.password !== signUpForm.confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
         /*Check if the input field is not empty to send input data to backend*/
         if (signUpForm.email.trim().length !== 0 && signUpForm.password.trim().length !== 0 && signUpForm.name.trim().length !== 0) {
             fetch("http://localhost:3000/SignUp", requestOptions)
                 .then((res) => {
+                    //If filled in fields have to short length or there are errors triggered error popup for failed sign up
+
                     if (res.status === 200) {
                         return res.json()
                     }
                     else {
-                        throw new Error("Invalid signup");
+                        setShowFailedSignUpPopUp(true)
 
                     }
+
                 })
 
                 .then((result) => {
@@ -88,26 +127,35 @@ export default function SignUp() {
                         }
 
                         setUserSignedUpPopUp(true)
-                        setFieldErrors({ emailField: true, passwordField: true, confirmPasswordField: true, nameField: true })
+                        setFieldErrors({ emailField: false, passwordField: false, confirmPasswordField: false, nameField: false })
+                        setTooShort({
+                            nameShort: false,
+                            emailShort: false,
+                            passwordShort: false,
+                            confirmPasswordShort: false
+                        })
+
 
                     }
                     else {
-                        alert("wrong password or email")
-                        setFieldErrors({ emailField: false, passwordField: false, confirmPasswordField: false, nameField: false })
+                        setShowFailedSignUpPopUp(true)
+                        setFieldErrors({ emailField: true, passwordField: true, confirmPasswordField: true, nameField: true })
+
                     }
 
                 })
-                .catch((error) => {
-                    // Catch fetch errors or thrown ones
-                    alert("Sign up failed: " + error.message);
+                .catch(() => {
+
+                    setShowFailedSignUpPopUp(true)
                 });
 
         }
         if (signUpForm.email.trim().length !== 0 && signUpForm.password.trim().length === 0) {
-            setFieldErrors({ emailField: true, passwordField: false, confirmPasswordField: false, nameField: false })
+            setFieldErrors({ emailField: false, passwordField: true, confirmPasswordField: true, nameField: true })
+
         }
         else if (signUpForm.password.trim().length !== 0 && signUpForm.email.trim().length === 0) {
-            setFieldErrors({ emailField: false, passwordField: true, confirmPasswordField: true, nameField: true })
+            setFieldErrors({ emailField: true, passwordField: false, confirmPasswordField: false, nameField: false })
         }
 
         else {
@@ -127,9 +175,21 @@ export default function SignUp() {
     return (
         <>
             <main className="Signup">
+                <Modal show={failedSignUpPopUpShow === true} onHide={() => setShowFailedSignUpPopUp(false)} dialogClassName="errorPopUp">
+                    <Modal.Header>
+                        <Modal.Title style={{ color: "#081051" }}>Could not create account!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>Sorry your account could not be created please try again!</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="failedSignUpBtn" onClick={() => setShowFailedSignUpPopUp(false)}>Ok</button>
+                    </Modal.Footer>
+
+                </Modal>
                 <Modal show={userSignedUpPopUp === true}>
                     <Modal.Header>
-                        <Modal.Title>Welcome!</Modal.Title>
+                        <Modal.Title style={{ color: "#081051" }}>Welcome!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         Welcome {signUpForm.name}!
@@ -143,6 +203,10 @@ export default function SignUp() {
                         </div>
 
                         <label>Name</label>
+                        {/*Show error message if filed is empty when signing up*/}
+                        {submitted && !fieldErrors?.nameField && signUpForm?.name.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in name</p>}
+                        {/*Show error message if length of name is less than 2 when signing up*/}
+                        {submitted && signUpForm?.name.trim().length < 2 && signUpForm?.name.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Name must be at least 2 characters</p>}
                         <input type="text" name="name" value={signUpForm.name} style={styles.nameInput} onChange={(event) => {
 
                             setSignUpForm({
@@ -151,11 +215,19 @@ export default function SignUp() {
                             })
 
                             setFieldErrors({
-                                ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
+                                ...fieldErrors, nameField: event.target.value.trim().length !== 0
+                            })
+
+                            setTooShort({
+                                ...tooShort, nameShort: event.target.value.trim().length > 0 && event.target.value.trim().length < 2
                             })
 
                         }}></input>
                         <label>Email</label>
+                        {/*Show error message if filed is empty when signing up*/}
+                        {submitted && !fieldErrors?.emailField && signUpForm?.email.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in email</p>}
+                        {/*Show error message if length of email is less than 11 when signing up*/}
+                        {submitted && signUpForm?.email.trim().length < 11 && signUpForm?.email.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Email must be at least 11 characters</p>}
                         <input type="text" name="email" value={signUpForm.email} style={styles.emailInput} onChange={(event) => {
 
                             setSignUpForm({
@@ -164,32 +236,53 @@ export default function SignUp() {
                             })
 
                             setFieldErrors({
-                                ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
+                                ...fieldErrors, emailField: event.target.value.trim().length !== 0
                             })
+
+                            setTooShort(
+                                {
+                                    ...tooShort, emailShort: event.target.value.trim().length > 0 && event.target.value.trim().length < 11
+                                })
+
 
 
 
                         }}></input>
+
                         <label>Password</label>
-                        <input type="password" name="password" style={styles.passwordInput} value={signUpForm.password} onChange={(event) => {
+                        {/*Show error message if filed is empty when signing up*/}
+                        {submitted && !fieldErrors?.passwordField && signUpForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
+                        {/*Show error message if length of password is less than 8 when signing up*/}
+                        {submitted && signUpForm?.password.trim().length < 8 && signUpForm?.password.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Password must be at least 8 characters</p>}
+                        <input type="password" name="password" style={styles.passwordInput}
+                            value={signUpForm.password} onChange={(event) => {
 
-                            setSignUpForm({
-                                ...signUpForm,
-                                [event.target.name]: event.target.value
-                            })
-                            setFieldErrors({
-                                ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
-                            })
+                                setSignUpForm({
+                                    ...signUpForm,
+                                    [event.target.name]: event.target.value
+                                })
+                                setFieldErrors({
+                                    ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
+                                })
+
+                                setTooShort({
+                                    ...tooShort, passwordShort: event.target.value.trim().length > 0 && event.target.value.trim().length < 8
+                                })
 
 
-                        }}></input>
+                            }}></input>
                         <label>Confirm password</label>
+                        {/*Show error message if filed is empty when signing up*/}
+                        {submitted && !fieldErrors?.confirmPasswordField && signUpForm?.confirmPassword.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in confirm password</p>}
+                        {/*Show error message if length of confirm password is less than 8 and does not match password written in password field when signing up*/}
+                        {submitted && signUpForm?.confirmPassword.trim().length < 8 && signUpForm?.confirmPassword.trim().length > 0 && signUpForm.password !== signUpForm.confirmPassword && <p className="confirmPassword-Error"> Password must be at least 8 characters and match password field</p>}
                         <input type="password" name="confirmPassword" style={styles.confirmPasswordInput} value={signUpForm.confirmPassword} onChange={(event) => {
 
                             setSignUpForm({
                                 ...signUpForm,
                                 [event.target.name]: event.target.value
                             })
+
                             setFieldErrors({
                                 ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
                             })
@@ -205,7 +298,7 @@ export default function SignUp() {
                         </div>
                     </form>
                 </section>
-            </main>
+            </main >
 
         </>
     )

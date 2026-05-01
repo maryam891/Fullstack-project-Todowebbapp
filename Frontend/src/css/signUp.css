@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
+    min-height: 900px;
     width: 50%;
     margin-bottom: 70px;
     background-color: rgba(255, 255, 255, 0.413);
@@ -12,6 +13,7 @@
 }
 
 #signUpSection button {
+    margin-top: 10px;
     height: 30px;
     width: 70px;
     font-size: 0.9rem;
@@ -23,7 +25,22 @@
     cursor: pointer;
 }
 
-#loginSection button:hover {
+.failedSignUpBtn {
+    height: 40px;
+    width: 70px;
+    background-color: white;
+    color: #081051;
+    border: solid 2px #D2A8E2;
+    border-radius: 5px;
+}
+
+.failedSignUpBtn:hover {
+    border: none;
+    background: #D2A8E2;
+    box-shadow: #191919 1px 1px 1px;
+}
+
+#signUpSection button:hover {
     background-color: #cd9ae3f0;
     border: none;
     box-shadow: #191919 1px 1px 1px;
@@ -35,9 +52,17 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 670px;
+    height: auto;
+    min-height: 700px;
     width: 380px;
 
+}
+
+.errorPopUp {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 7px;
+    height: 200px;
+    width: 400px;
 }
 
 #signUpSection input {
@@ -55,7 +80,7 @@
 }
 
 #signUpSection {
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 #signUpSection h1 {
@@ -63,21 +88,19 @@
     color: #081051;
 }
 
-
-
-.loginTextContainer {
+.signUpTextContainer {
     margin-top: 30px;
     height: 10px;
     width: 180px;
 
 }
 
-.loginTextContainer p {
+.signUpTextContainer p {
     font-size: 0.9rem;
     color: #081051;
 }
 
-.loginText {
+.signUpText {
     font-size: 0.9rem;
     color: #081051;
     cursor: pointer;
@@ -85,26 +108,33 @@
 }
 
 .imageSection img {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
 }
 
-.imageSection {
-    display: flex;
-    flex-direction: column;
-    height: 250px;
 
+.confirmPassword-Error {
+    color: rgb(134, 19, 48);
+    font-size: 13px;
+    margin: 0;
+    height: auto;
+    width: 200px;
 }
 
 
 @media screen and (max-width: 407px) and (min-width: 360px) {
     .Signup {
-        width: 73%;
+        width: 74%;
         transform: translate(20%, 5%);
+        justify-content: center;
+        align-items: center;
+
     }
 
     #signUpSection form {
-        height: 700px;
+        justify-content: center;
+        align-items: center;
+        min-height: 850px;
         width: auto;
 
     }
@@ -114,21 +144,23 @@
     }
 
     #signUpSection label {
-        align-self: flex-start;
+        align-self: center;
         padding-top: 10px;
 
     }
 
-
     #signUpSection button {
-        align-self: flex-start;
-
+        width: 90px;
+        height: 40px;
+        font-size: 1rem;
     }
 
     .imageSection {
         height: 200px;
 
+
     }
+
 }
 
 @media screen and (max-width: 500px) and (min-width: 407px) {
@@ -140,22 +172,28 @@
     #signUpSection form {
         height: 720px;
         width: auto;
+        justify-content: center;
+        align-items: center;
 
     }
+
 
     #signUpSection h1 {
         text-align: center;
     }
 
     #signUpSection label {
-        align-self: flex-start;
+        align-self: center;
         padding-top: 5px;
 
     }
 
-    #signupSection button {
-        align-self: flex-start;
+    #signUpSection button {
+        width: 90px;
+        height: 40px;
+        font-size: 1rem;
     }
+
 
     .imageSection {
         height: 200px;
@@ -186,31 +224,15 @@
     }
 
     #signUpSection button {
-        align-self: flex-start;
-    }
-
-    #signUpSection button {
-        width: 90px;
-        font-size: 1rem;
-    }
-
-    #signUpSection button {
-        width: 90px;
         height: 40px;
-        font-size: 1rem;
+        width: 75px;
     }
+
 
     .signUpTextContainer {
         width: 200px;
     }
 
-    .loginTextContainer p {
-        font-size: 1rem;
-    }
-
-    .loginText {
-        font-size: 1rem;
-    }
 
     .imageSection {
         height: 200px;
@@ -225,17 +247,12 @@
     }
 
     #signUpSection button {
-        width: 90px;
-        font-size: 1rem;
+        height: 35px;
+        width: 75px;
     }
 
-    .loginTextContainer p {
-        font-size: 1rem;
-    }
 
-    .loginText {
-        font-size: 1rem;
-    }
+
 }
 
 @media screen and (max-width: 869px) and (min-width:762px) {
@@ -251,17 +268,12 @@
     }
 
     #signUpSection button {
-        width: 90px;
+        height: 35px;
+        width: 75px;
         font-size: 1rem;
     }
 
-    .loginTextContainer p {
-        font-size: 1rem;
-    }
 
-    .loginText {
-        font-size: 1rem;
-    }
 }
 
 

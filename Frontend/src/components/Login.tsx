@@ -15,17 +15,14 @@ export default function Login() {
     })
 
     const [fieldErrors, setFieldErrors] = useState({
-        emailField: true,
-        passwordField: true
+        emailField: false,
+        passwordField: false
     });
     const navigate = useNavigate();
     const [showPopUp, setShowPopUp] = useState(false);
+    const [showLoginErrPopUp, setShowLoginErrPopUp] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
 
-
-    const handleShowPopUp = () => {
-        setShowPopUp(true);
-
-    }
     //SetTimeout to wait to navigate to profile page when user is logged in to be able to show popup first
     useEffect(() => {
         if (User?.isLoggedIn) {
@@ -37,17 +34,17 @@ export default function Login() {
     {/*Change border color of input based on empty and non empty field*/ }
     const styles = {
         emailInput: {
-            border: fieldErrors.emailField ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (!submitted || fieldErrors.emailField) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
         },
         passwordInput: {
-            border: fieldErrors.passwordField ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (!submitted || fieldErrors.passwordField) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
         }
     };
 
     {/*Login function for login button*/ }
     function Login(event: React.MouseEvent) {
         event.preventDefault()
-
+        setSubmitted(true)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -60,8 +57,8 @@ export default function Login() {
                     if (res.status === 200) {
                         return res.json()
                     }
-                    else if (res.status === 400) {
-                        throw new Error("Invalid login");
+                    else {
+                        setShowLoginErrPopUp(true)
 
                     }
                 })
@@ -76,23 +73,22 @@ export default function Login() {
 
                         if (User) {
                             User.login({ email: loginForm.email, password: loginForm.password, userId: result[0].id })
-                            setFieldErrors({ emailField: true, passwordField: true })
-                            handleShowPopUp()
+                            setFieldErrors({ emailField: false, passwordField: false })
+                            setShowPopUp(true);
 
 
                         }
 
                     }
                     else {
-                        alert("wrong password or email")
+                        setShowLoginErrPopUp(true)
                         User?.logout()
-                        setFieldErrors({ emailField: false, passwordField: false })
+                        setFieldErrors({ emailField: true, passwordField: true })
                     }
 
                 })
-                .catch((error) => {
-                    // Catch fetch errors or thrown ones
-                    alert("Login failed: " + error.message);
+                .catch(() => {
+                    setShowLoginErrPopUp(true)
                 });
 
         }
@@ -112,43 +108,57 @@ export default function Login() {
         <>
             <main className="Login">
                 <section id="loginSection">
-                    {showPopUp &&
-                        <Modal show={showPopUp} dialogClassName="welcomePopup">
-                            <Modal.Header>
-                                <Modal.Title>Welcome back {User?.currentUser?.name}!</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Modal.Title>
-                                    Check out your todos for today!
-                                </Modal.Title>
-                            </Modal.Body>
-                        </Modal>}
+                    <Modal show={showLoginErrPopUp} onHide={() => setShowLoginErrPopUp(false)} dialogClassName="loginPopUpErr">
+                        <Modal.Header>
+                            <Modal.Title style={{ color: "#081051" }}>Could not login!</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>Password or email is wrong, please try again!</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button onClick={() => setShowLoginErrPopUp(false)} className="loginErrBtn">Ok</button>
+                        </Modal.Footer>
+                    </Modal>
+                    <Modal show={showPopUp} dialogClassName="welcomePopup">
+                        <Modal.Header>
+                            <Modal.Title>Welcome back {User?.currentUser?.name}!</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Modal.Title>
+                                Check out your todos for today!
+                            </Modal.Title>
+                        </Modal.Body>
+                    </Modal>
                     <h1>Login</h1>
                     <form>
                         <label>Email</label>
+                        {/*Show error message if filed is empty when signing up*/}
+                        {submitted && !fieldErrors?.emailField && loginForm?.email.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in email</p>}
                         <input type="text" name="email" value={loginForm.email} style={styles.emailInput} onChange={(event) => {
 
                             setLoginForm({
                                 ...loginForm,
-                                [event.target.name]: event.target.value
+                                email: event.target.value
                             })
 
                             setFieldErrors({
-                                ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
+                                ...fieldErrors, emailField: event.target.value.trim().length !== 0
                             })
 
 
 
                         }}></input>
                         <label>Password</label>
+                        {/*Show error message if filed is empty when signing up*/}
+                        {submitted && !fieldErrors?.passwordField && loginForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
                         <input type="password" name="password" style={styles.passwordInput} value={loginForm.password} onChange={(event) => {
 
                             setLoginForm({
                                 ...loginForm,
-                                [event.target.name]: event.target.value
+                                password: event.target.value
                             })
                             setFieldErrors({
-                                ...fieldErrors, [event.target.name + "Field"]: event.target.value.trim().length !== 0
+                                ...fieldErrors, passwordField: event.target.value.trim().length !== 0
                             })
 
 
