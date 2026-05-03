@@ -164,7 +164,7 @@ export default function Login() {
 
                         }}></input>
                         <button type="submit" onClick={Login}>Login</button>
-                        <div className="signUpTextContainer">
+                        <div className="loginTextContainer">
                             <p>Don't have an account?</p>
                             <p className="signUpText" onClick={() => {
                                 navigate("/SignUp")
