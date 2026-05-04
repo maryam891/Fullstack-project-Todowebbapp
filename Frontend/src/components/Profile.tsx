@@ -21,7 +21,7 @@ export default function Profile() {
     useEffect(() => {
         //Check if user is loggedin and that the user exists before sending request
         if (Auth?.isLoggedIn && Auth?.currentUser) {
-            fetch('http://localhost:3000/Profile', {
+            fetch(`${import.meta.env.VITE_API_URL}/Profile`, {
                 method: 'POST',
                 body: JSON.stringify({ id: Auth?.currentUser?.userId }),
                 headers: {
@@ -43,7 +43,7 @@ export default function Profile() {
 
     //Remove account
     function handleDelAccount() {
-        fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/removeAccount`, {
+        fetch(`${import.meta.env.VITE_API_URL}/removeAccount`, {
             method: 'DELETE',
             body: JSON.stringify({ id: Auth?.currentUser?.userId }),
             headers: {

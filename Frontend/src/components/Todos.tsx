@@ -61,7 +61,7 @@ export default function Todos() {
     {/*Function to get all todos*/ }
     {/*Send userId, email and password to backend to compare and receive back data of user that is logged in*/ }
     function getTodos() {
-        fetch('http://localhost:3000/Todos', {
+        fetch(`${import.meta.env.VITE_API_URL}Todos`, {
             method: 'POST',
             body: JSON.stringify({ id: User?.currentUser?.userId, Email: User?.currentUser?.email, Password: User?.currentUser?.password }),
             headers: {
@@ -84,7 +84,7 @@ export default function Todos() {
     function changeCheckState(event: React.ChangeEvent<HTMLInputElement>, id: number) {
         {/*Send the event target change to backend but also check if the todo is checked(1) or not checked(0)*/ }
         const isChecked = event.target.checked;
-        fetch('http://localhost:3000/updateCompletedTodos', {
+        fetch(`${import.meta.env.VITE_API_URL}/updateCompletedTodos`, {
             method: 'POST',
             body: JSON.stringify({ completed_todo: isChecked ? 1 : 0, id: id, user_id: User?.currentUser?.userId }),
             headers: {
@@ -127,7 +127,7 @@ export default function Todos() {
 
     {/*Send clicked id to backend to delete todo*/ }
     function removeTodo(id: number) {
-        fetch('http://localhost:3000/DeleteTodo', {
+        fetch(`${import.meta.env.VITE_API_URL}/DeleteTodo`, {
             method: 'DELETE',
             body: JSON.stringify({ id: id }),
             headers: {
@@ -155,7 +155,7 @@ export default function Todos() {
         setShowAddTodoContainer(true)
         //Get images from todoImages table to select an image for your todo
 
-        fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/getImages`)
+        fetch(`${import.meta.env.VITE_API_URL}/getImages`)
             .then((response) => response.json())
             .then((result) => {
                 setgetImages(result)
@@ -166,7 +166,7 @@ export default function Todos() {
     //Send new values to backend and save todo
 
     function saveTodo() {
-        fetch('http://localhost:3000/addNewTodo', {
+        fetch(`${import.meta.env.VITE_API_URL}/addNewTodo`, {
             method: 'POST',
             body: JSON.stringify({ Todos: addTodoTitle, todo_description: addTodoText, image_id: selectedImg, user_id: User?.currentUser?.userId, chosen_date: selectedDateTime }),
             headers: {
