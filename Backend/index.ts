@@ -18,7 +18,10 @@ let database: Database;
 })();
 
 const app = express();
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Webbtjänsten kan nu ta emot anrop på port ${PORT}`);
+});
 app.use(
   cors({
     origin: "https://fullstack-project-todowebbapp.vercel.app",
