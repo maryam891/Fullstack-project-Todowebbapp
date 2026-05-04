@@ -19,7 +19,11 @@ let database: Database;
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://fullstack-project-todowebbapp.vercel.app",
+  }),
+);
 app.use(express.json());
 
 //Compare Users table email and password value with frontends email and password
