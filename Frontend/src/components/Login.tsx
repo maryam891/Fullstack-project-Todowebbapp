@@ -167,7 +167,7 @@ export default function Login() {
                         <div className="loginTextContainer">
                             <p>Don't have an account?</p>
                             <p className="signUpText" onClick={() => {
-                                navigate("/SignUp")
+                                navigate("/signUp")
                             }}>Sign up</p>
                         </div>
                     </form>
