@@ -43,10 +43,6 @@ app.post("/Login", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 app.post("/SignUp", async (request, response) => {
   let signedUpUsers = await database.run(
     "INSERT INTO Users(Email, Password, Name) VALUES(?,?, ?)",
@@ -66,10 +62,6 @@ app.post("/SignUp", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 //Compare id:s to send user_img and Name of user that is logged in and display on profile page
 app.post("/Profile", async (request, response) => {
   let userId = await database.get(
@@ -83,10 +75,6 @@ app.post("/Profile", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 //Remove user account
 app.delete("/removeAccount", async (request, response) => {
   let removeAcc = await database.run("DELETE FROM Users WHERE id=?", [
@@ -97,9 +85,6 @@ app.delete("/removeAccount", async (request, response) => {
   } else {
     response.status(400).send({ message: "Failed to delete" });
   }
-});
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
 });
 
 //Get all todos of user that is logged in and use inner join to join todoImages table with TODOS table to get images to the TODOS table of the todos that already exists
@@ -117,10 +102,6 @@ app.post("/Todos", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 //Update todos that are checked and send id of user that has the checked todo and the todo id
 app.post("/updateCompletedTodos", async (request, response) => {
   let completedTodo = await database.run(
@@ -134,10 +115,6 @@ app.post("/updateCompletedTodos", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 //Delete one todo when clicking on dustbin
 app.delete("/DeleteTodo", async (request, response) => {
   let deleteTodo = await database.run("DELETE FROM TODOS WHERE id=?", [
@@ -148,10 +125,6 @@ app.delete("/DeleteTodo", async (request, response) => {
   } else {
     response.status(400).send({ message: "Failed to delete" });
   }
-});
-
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
 });
 
 //Get all todos of the user that is logged in on home page
@@ -168,10 +141,6 @@ app.post("/Home", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 //Get all images from todoImages table
 app.get("/getImages", async (request, response) => {
   let getTodoImages = await database.all("SELECT * FROM todoImages");
@@ -181,10 +150,6 @@ app.get("/getImages", async (request, response) => {
   } else {
     response.status(400).send({ message: "Failed to get images" });
   }
-});
-
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
 });
 
 //Add new todo to TODOS table for the user that is logged in
@@ -207,10 +172,6 @@ app.post("/addNewTodo", async (request, response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
-
 //Get name of user that is logged in
 app.post("/UserName", async (request, response) => {
   let getUserName = await database.get("SELECT Name FROM Users WHERE id=?", [
@@ -223,9 +184,7 @@ app.post("/UserName", async (request, response) => {
     response.status(400).send({ message: "No such user" });
   }
 });
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
-});
+
 //Edit todo that matches id of user that is logged in and id of todo
 app.put("/editTodo", async (request, response) => {
   let editTodo = await database.run(
@@ -246,7 +205,4 @@ app.put("/editTodo", async (request, response) => {
   } else {
     response.status(400).send({ message: "Failed to edit todo" });
   }
-});
-app.listen(3000, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
 });
