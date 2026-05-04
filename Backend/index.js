@@ -64,7 +64,11 @@ app.listen(PORT, () => {
     console.log(`Webbtjänsten kan nu ta emot anrop på port ${PORT}`);
 });
 app.use((0, cors_1.default)({
-    origin: "https://fullstack-project-todowebbapp.vercel.app",
+    origin: [
+        "https://fullstack-project-todowebbapp.vercel.app",
+        /https:\/\/fullstack-project-todowebbapp.*\.vercel\.app/,
+        "http://localhost:5173",
+    ],
 }));
 app.use(express_1.default.json());
 //Compare Users table email and password value with frontends email and password

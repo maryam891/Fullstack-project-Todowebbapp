@@ -27,9 +27,11 @@ app.use(
     origin: [
       "https://fullstack-project-todowebbapp.vercel.app",
       /https:\/\/fullstack-project-todowebbapp.*\.vercel\.app/,
+      "http://localhost:5173",
     ],
   }),
 );
+
 app.use(express.json());
 
 //Compare Users table email and password value with frontends email and password
