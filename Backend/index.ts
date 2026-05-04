@@ -24,7 +24,10 @@ app.listen(PORT, () => {
 });
 app.use(
   cors({
-    origin: "https://fullstack-project-todowebbapp.vercel.app",
+    origin: [
+      "https://fullstack-project-todowebbapp.vercel.app",
+      /https:\/\/fullstack-project-todowebbapp.*\.vercel\.app/,
+    ],
   }),
 );
 app.use(express.json());
