@@ -49,7 +49,7 @@ export default function Home() {
     }, [user])
 
     useEffect(() => {
-        fetch('/Home', {
+        fetch(`${import.meta.env.VITE_API_URL}/Home`, {
             method: 'POST',
             body: JSON.stringify({ id: user?.currentUser?.userId }),
             headers: {

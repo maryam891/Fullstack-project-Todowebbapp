@@ -61,7 +61,7 @@ export default function Todos() {
     {/*Function to get all todos*/ }
     {/*Send userId, email and password to backend to compare and receive back data of user that is logged in*/ }
     function getTodos() {
-        fetch(`${import.meta.env.VITE_API_URL}Todos`, {
+        fetch(`${import.meta.env.VITE_API_URL}/Todos`, {
             method: 'POST',
             body: JSON.stringify({ id: User?.currentUser?.userId, Email: User?.currentUser?.email, Password: User?.currentUser?.password }),
             headers: {
