@@ -30,7 +30,7 @@ export default function Home() {
     //Check if user is logged in before getting user name
     useEffect(() => {
         if (user?.isLoggedIn === true && user.currentUser) {
-            fetch('http://localhost:3000/UserName', {
+            fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/UserName`, {
                 method: 'POST',
                 body: JSON.stringify({ id: user?.currentUser?.userId }),
                 headers: {

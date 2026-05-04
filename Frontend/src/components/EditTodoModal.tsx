@@ -34,7 +34,7 @@ export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen
         setEditModalOpen(true)
         //Get images from todoImages table to select an image for your todo
 
-        fetch('http://localhost:3000/getImages')
+        fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/getImages`)
             .then((response) => response.json())
             .then((result) => {
                 setgetImages(result)
@@ -69,7 +69,7 @@ export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen
     }, [clickedEditTodo])
     //Send the edited values to backend when clicking on save
     function saveEditTodo(id: number) {
-        fetch('http://localhost:3000/editTodo', {
+        fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/editTodo`, {
             method: 'PUT',
             body: JSON.stringify({ Todos: editTodoTitle, todo_description: editTodoText, image_id: selectedImg, id: id, user_id: User?.currentUser?.userId, chosen_date: editDateTime ? editDateTime.toISOString() : null }),
             //Check if ediDateTime exists to convert to string when sending to backend

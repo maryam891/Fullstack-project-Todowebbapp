@@ -155,7 +155,7 @@ export default function Todos() {
         setShowAddTodoContainer(true)
         //Get images from todoImages table to select an image for your todo
 
-        fetch('http://localhost:3000/getImages')
+        fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/getImages`)
             .then((response) => response.json())
             .then((result) => {
                 setgetImages(result)

@@ -97,7 +97,7 @@ export default function SignUp() {
         }
         /*Check if the input field is not empty to send input data to backend*/
         if (signUpForm.email.trim().length !== 0 && signUpForm.password.trim().length !== 0 && signUpForm.name.trim().length !== 0) {
-            fetch("http://localhost:3000/SignUp", requestOptions)
+            fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/SignUp`, requestOptions)
                 .then((res) => {
                     //If filled in fields have to short length or there are errors triggered error popup for failed sign up
 

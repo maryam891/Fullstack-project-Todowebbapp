@@ -52,7 +52,7 @@ export default function Login() {
         }
         {/*Check if the input field is not empty to send input data to backend*/ }
         if (loginForm.email.trim().length !== 0 && loginForm.password.trim().length !== 0) {
-            fetch("http://localhost:3000/Login", requestOptions)
+            fetch(`${import.meta.env.VITE_API_URL}/Login`, requestOptions)
                 .then((res) => {
                     if (res.status === 200) {
                         return res.json()

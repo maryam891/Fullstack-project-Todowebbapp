@@ -43,7 +43,7 @@ export default function Profile() {
 
     //Remove account
     function handleDelAccount() {
-        fetch('http://localhost:3000/removeAccount', {
+        fetch(`${import.meta.env.VITE_API_URL}http://localhost:3000/removeAccount`, {
             method: 'DELETE',
             body: JSON.stringify({ id: Auth?.currentUser?.userId }),
             headers: {
