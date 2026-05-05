@@ -34,10 +34,10 @@ export default function Login() {
     {/*Change border color of input based on empty and non empty field*/ }
     const styles = {
         emailInput: {
-            border: (!submitted || fieldErrors.emailField) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (submitted || fieldErrors.emailField) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
         passwordInput: {
-            border: (!submitted || fieldErrors.passwordField) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (submitted || fieldErrors.passwordField) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         }
     };
 
@@ -74,6 +74,7 @@ export default function Login() {
                         if (User) {
                             User.login({ email: loginForm.email, password: loginForm.password, userId: result[0].id })
                             setFieldErrors({ emailField: false, passwordField: false })
+                            setSubmitted(false)
                             setShowPopUp(true);
 
 
@@ -133,7 +134,7 @@ export default function Login() {
                     <form>
                         <label>Email</label>
                         {/*Show error message if filed is empty when signing up*/}
-                        {submitted && !fieldErrors?.emailField && loginForm?.email.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in email</p>}
+                        {submitted && loginForm?.email.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in email</p>}
                         <input type="text" name="email" value={loginForm.email} style={styles.emailInput} onChange={(event) => {
 
                             setLoginForm({
@@ -150,7 +151,7 @@ export default function Login() {
                         }}></input>
                         <label>Password</label>
                         {/*Show error message if filed is empty when signing up*/}
-                        {submitted && !fieldErrors?.passwordField && loginForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
+                        {submitted && loginForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
                         <input type="password" name="password" style={styles.passwordInput} value={loginForm.password} onChange={(event) => {
 
                             setLoginForm({

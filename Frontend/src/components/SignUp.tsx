@@ -38,18 +38,18 @@ export default function SignUp() {
     /*Change border color of input based on empty and non empty field*/
     const styles = {
         emailInput: {
-            border: (!submitted || fieldErrors.emailField || tooShort?.emailShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (submitted || fieldErrors.emailField || tooShort?.emailShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
         passwordInput: {
-            border: (!submitted || fieldErrors.passwordField || tooShort?.passwordShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (submitted || fieldErrors.passwordField || tooShort?.passwordShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
 
         confirmPasswordInput: {
-            border: (!submitted || fieldErrors.passwordField || tooShort?.confirmPasswordShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (submitted || fieldErrors.confirmPasswordField || tooShort?.confirmPasswordShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
 
         nameInput: {
-            border: (!submitted || fieldErrors.nameField || tooShort?.nameShort) ? "2px solid #081051" : "2px solid rgb(134, 19, 48)"
+            border: (submitted || fieldErrors.nameField || tooShort?.nameShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         }
     };
 
@@ -125,7 +125,7 @@ export default function SignUp() {
                                 password: signUpForm.password,
                             })
                         }
-
+                        setSubmitted(false)
                         setUserSignedUpPopUp(true)
                         setFieldErrors({ emailField: false, passwordField: false, confirmPasswordField: false, nameField: false })
                         setTooShort({
@@ -204,9 +204,9 @@ export default function SignUp() {
 
                         <label>Name</label>
                         {/*Show error message if filed is empty when signing up*/}
-                        {submitted && !fieldErrors?.nameField && signUpForm?.name.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in name</p>}
+                        {submitted && signUpForm?.name.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in name</p>}
                         {/*Show error message if length of name is less than 2 when signing up*/}
-                        {submitted && signUpForm?.name.trim().length < 2 && signUpForm?.name.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Name must be at least 2 characters</p>}
+                        {signUpForm?.name.trim().length < 2 && signUpForm?.name.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Name must be at least 2 characters</p>}
                         <input type="text" name="name" value={signUpForm.name} style={styles.nameInput} onChange={(event) => {
 
                             setSignUpForm({
@@ -225,9 +225,9 @@ export default function SignUp() {
                         }}></input>
                         <label>Email</label>
                         {/*Show error message if filed is empty when signing up*/}
-                        {submitted && !fieldErrors?.emailField && signUpForm?.email.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in email</p>}
+                        {submitted && signUpForm?.email.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in email</p>}
                         {/*Show error message if length of email is less than 11 when signing up*/}
-                        {submitted && signUpForm?.email.trim().length < 11 && signUpForm?.email.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Email must be at least 11 characters</p>}
+                        {signUpForm?.email.trim().length < 11 && signUpForm?.email.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Email must be at least 11 characters</p>}
                         <input type="text" name="email" value={signUpForm.email} style={styles.emailInput} onChange={(event) => {
 
                             setSignUpForm({
@@ -251,9 +251,9 @@ export default function SignUp() {
 
                         <label>Password</label>
                         {/*Show error message if filed is empty when signing up*/}
-                        {submitted && !fieldErrors?.passwordField && signUpForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
+                        {submitted && signUpForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
                         {/*Show error message if length of password is less than 8 when signing up*/}
-                        {submitted && signUpForm?.password.trim().length < 8 && signUpForm?.password.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Password must be at least 8 characters</p>}
+                        {signUpForm?.password.trim().length < 8 && signUpForm?.password.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Password must be at least 8 characters</p>}
                         <input type="password" name="password" style={styles.passwordInput}
                             value={signUpForm.password} onChange={(event) => {
 
@@ -273,9 +273,9 @@ export default function SignUp() {
                             }}></input>
                         <label>Confirm password</label>
                         {/*Show error message if filed is empty when signing up*/}
-                        {submitted && !fieldErrors?.confirmPasswordField && signUpForm?.confirmPassword.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in confirm password</p>}
+                        {submitted && signUpForm?.confirmPassword.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in confirm password</p>}
                         {/*Show error message if length of confirm password is less than 8 and does not match password written in password field when signing up*/}
-                        {submitted && signUpForm?.confirmPassword.trim().length < 8 && signUpForm?.confirmPassword.trim().length > 0 && signUpForm.password !== signUpForm.confirmPassword && <p className="confirmPassword-Error"> Password must be at least 8 characters and match password field</p>}
+                        {signUpForm?.confirmPassword.trim().length < 8 && signUpForm?.confirmPassword.trim().length > 0 && signUpForm.password !== signUpForm.confirmPassword && <p className="confirmPassword-Error"> Password must be at least 8 characters and match password field</p>}
                         <input type="password" name="confirmPassword" style={styles.confirmPasswordInput} value={signUpForm.confirmPassword} onChange={(event) => {
 
                             setSignUpForm({
