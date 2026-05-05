@@ -38,18 +38,22 @@ export default function SignUp() {
     /*Change border color of input based on empty and non empty field*/
     const styles = {
         emailInput: {
-            border: (submitted || fieldErrors.emailField || tooShort?.emailShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
+            border: ((submitted && (signUpForm.email.trim().length === 0 && signUpForm.email.trim().length < 11))
+                || (signUpForm.email.trim().length > 0 && signUpForm.email.trim().length < 11)) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
         passwordInput: {
-            border: (submitted || fieldErrors.passwordField || tooShort?.passwordShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
+            border: ((submitted && (signUpForm.password.trim().length === 0 || signUpForm.password.trim().length < 8))
+                || (signUpForm.password.trim().length > 0 && signUpForm.password.trim().length < 8)) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
 
         confirmPasswordInput: {
-            border: (submitted || fieldErrors.confirmPasswordField || tooShort?.confirmPasswordShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
+            border: ((submitted && (signUpForm.confirmPassword.trim().length === 0 || signUpForm.confirmPassword.trim().length < 8 || signUpForm.password !== signUpForm.confirmPassword))
+                || (signUpForm.confirmPassword.trim().length > 0 && (signUpForm.confirmPassword.trim().length < 8 || signUpForm.password !== signUpForm.confirmPassword))) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         },
 
         nameInput: {
-            border: (submitted || fieldErrors.nameField || tooShort?.nameShort) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
+            border: ((submitted && (signUpForm.name.trim().length === 0 || signUpForm.name.trim().length < 2))
+                || (signUpForm.name.trim().length > 0 && signUpForm.name.trim().length < 2)) ? "2px solid rgb(134, 19, 48)" : "2px solid #081051"
         }
     };
 
