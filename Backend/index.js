@@ -189,18 +189,6 @@ app.post("/addNewTodo", (request, response) => __awaiter(void 0, void 0, void 0,
         response.status(400).send({ message: "Failed to add new todo" });
     }
 }));
-//Get name of user that is logged in
-app.post("/UserName", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    let getUserName = yield database.get("SELECT Name FROM Users WHERE id=?", [
-        request.body.id,
-    ]);
-    if (getUserName) {
-        response.status(200).send(getUserName);
-    }
-    else {
-        response.status(400).send({ message: "No such user" });
-    }
-}));
 //Edit todo that matches id of user that is logged in and id of todo
 app.put("/editTodo", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     let editTodo = yield database.run("UPDATE TODOS SET Todos=?, todo_description=?, image_id=?, chosen_date=? WHERE id=? AND user_id=?", [

@@ -1,6 +1,6 @@
 .navbar {
     width: 100%;
-    height: 60px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,17 +14,12 @@
 }
 
 .desktopMenu {
-    width: 90%;
+    width: 80%;
     display: flex;
     align-items: center;
     height: 100%;
 }
 
-.desktopIcon {
-    cursor: pointer;
-    color: #081051;
-    margin-right: 20px;
-}
 
 .navContainer {
     display: flex;
@@ -70,6 +65,32 @@
 
 }
 
+.desktopIconBtn {
+    cursor: pointer;
+    min-width: 90px;
+    width: auto;
+    margin-right: 10px;
+    border-radius: 8px;
+    height: 35px;
+    padding-top: 5px;
+    border: none;
+    color: #081051;
+    background-color: #D2A8E2;
+    font-weight: 400;
+    margin-top: 10px;
+
+}
+
+.desktopIconBtn:hover {
+    box-shadow: #292828 1px 1px 1px;
+    transform: scale(1.1);
+}
+
+.desktopIcon {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
 /*Hamburger menu*/
 .hamburger {
     display: none;
@@ -84,12 +105,6 @@
     display: none;
 }
 
-.DesktopIconContainer {
-    display: block;
-    width: 100px;
-    padding-top: 10px;
-
-}
 
 .mobileMenu,
 .hamburger-menu {
@@ -121,6 +136,7 @@
         margin-right: 20px;
         position: relative;
         width: 30px;
+
     }
 
     .hamburger span {
@@ -144,6 +160,8 @@
         text-align: center;
         top: 13px;
         width: 220px;
+        z-index: 999;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
     }
 
     /*links inside hamburger menu*/
@@ -170,25 +188,30 @@
         width: 80%;
     }
 
-    .DesktopIconContainer {
+    .desktopIconBtn {
         display: none;
-        /* hide icon on far right */
+
     }
 
-    .mobileIconSection {
+    .mobileIconBtn {
+        min-width: 90px;
+        border-radius: 8px;
+        margin-left: 20px;
+        width: auto;
+        height: 35px;
+        background-color: #D2A8E2;
+        color: #081051;
+        border: none;
         display: block;
         margin-top: 10px;
     }
 
-    .mobileIconContainer a {
-        color: #081051;
-        font-size: 0.9rem;
-    }
 
     .mobileIcon {
         height: 17px;
         width: 17px;
         color: #081051;
+        margin-right: 5px;
     }
 
 

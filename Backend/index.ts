@@ -177,19 +177,6 @@ app.post("/addNewTodo", async (request, response) => {
   }
 });
 
-//Get name of user that is logged in
-app.post("/UserName", async (request, response) => {
-  let getUserName = await database.get("SELECT Name FROM Users WHERE id=?", [
-    request.body.id,
-  ]);
-
-  if (getUserName) {
-    response.status(200).send(getUserName);
-  } else {
-    response.status(400).send({ message: "No such user" });
-  }
-});
-
 //Edit todo that matches id of user that is logged in and id of todo
 app.put("/editTodo", async (request, response) => {
   let editTodo = await database.run(

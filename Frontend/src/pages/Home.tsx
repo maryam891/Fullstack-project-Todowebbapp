@@ -25,28 +25,6 @@ export default function Home() {
     //Use values from useContext
     const user = useContext(AuthStatusContext)
     const [userInfo, setUserInfo] = useState<Home[]>([])
-    const [userName, setGetUserName] = useState(null)
-
-    //Check if user is logged in before getting user name
-    useEffect(() => {
-        if (user?.isLoggedIn === true && user.currentUser) {
-            fetch(`${import.meta.env.VITE_API_URL}/UserName`, {
-                method: 'POST',
-                body: JSON.stringify({ id: user?.currentUser?.userId }),
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    setGetUserName(data.Name);
-                })
-                .catch((err) => {
-                    console.log(err.message, 'error');
-                })
-        }
-
-    }, [user])
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/Home`, {
@@ -81,7 +59,7 @@ export default function Home() {
                         <div className="homeLoginHeaderSection">
                             <h1>
                                 {/*Render name of user that is logged in*/}
-                                Welcome {userName}!
+                                Welcome {user?.currentUser?.name}!
                             </h1>
                             {userInfo.length > 0 ? <h2>Here are your todos</h2> : <div style={{ height: "500px" }}><h2>You don't have any todos, start adding todos!</h2> <button className="homeTodosBtn" style={{ marginTop: "10px" }} onClick={() => navigate("/Todos")}>Todos</button></div>}
 
@@ -93,7 +71,7 @@ export default function Home() {
                             userInfo.map((userTodos, index) => (
                                 <div key={index}>
                                     <div className="homepageLoginTodoSection">
-                                        <h3>
+                                        <h3 data-testid="todo-item">
                                             {userTodos.Todos}
                                         </h3>
                                         <div className="homepageLoginImgContainer" >

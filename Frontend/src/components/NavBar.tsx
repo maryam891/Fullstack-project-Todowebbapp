@@ -30,6 +30,7 @@ export default function NavBarLoggedIn() {
         }
 
     }
+    console.log(User?.currentUser?.name)
     return (
         <>
             {/*Check if user is logged in to show logged in navbar else logged out navbar*/}
@@ -45,9 +46,9 @@ export default function NavBarLoggedIn() {
                             <li><Link to="/" className="nav-link">Home</Link></li>
                             <li><Link to="/Todos" className="nav-link">Todos</Link></li>
                         </ul>
-                        <div className="DesktopIconContainer">
-                            <FaRegUser className="desktopIcon" onClick={profileNavigate} />
-                        </div>
+                        <button className="desktopIconBtn" onClick={profileNavigate}>
+                            {User?.currentUser?.name}<FaRegUser className="desktopIcon" />
+                        </button>
                     </div>
                     {/*Hamburger menu*/}
                     <div className="hamburger-menu">
@@ -67,9 +68,9 @@ export default function NavBarLoggedIn() {
                             <li>
                                 <Link to="/Todos" className='nav-link'>Todos</Link>
                             </li>
-                            <li className="mobileIconContainer">
-                                <FaRegUser className="mobileIcon" onClick={profileNavigate} />
-                            </li>
+                            <button className="mobileIconBtn" onClick={profileNavigate}>
+                                {User?.currentUser?.name}<FaRegUser className="mobileIcon" />
+                            </button>
                         </ul>
                     </div>
                 </nav >
@@ -85,9 +86,10 @@ export default function NavBarLoggedIn() {
                             <li><Link to="/" className="nav-link">Home</Link></li>
                             <li><Link to="/Todos" className="nav-link">Todos</Link></li>
                         </ul>
-                        <div className="DesktopIconContainer">
-                            <FaRegUser className="desktopIcon" onClick={LoginNavigate} />
-                        </div>
+                        <button className="desktopIconBtn" onClick={LoginNavigate}>
+                            Login
+                            <FaRegUser className="desktopIcon" />
+                        </button>
                     </div>
 
 
@@ -109,9 +111,9 @@ export default function NavBarLoggedIn() {
                             <li>
                                 <Link to="/Todos" className='nav-link'>Todos</Link>
                             </li>
-                            <li className="mobileIconContainer">
-                                <FaRegUser className="mobileIcon" onClick={LoginNavigate} />
-                            </li>
+                            <button className="mobileIconBtn" onClick={LoginNavigate}>
+                                Login <FaRegUser className="mobileIcon" />
+                            </button>
                         </ul>
                     </div>
                 </nav>}

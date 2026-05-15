@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { AuthStatusContext } from "../AuthContext";
 import { IoClose } from "react-icons/io5";
 import "../css/editModal.css"
-import { type image } from "./Todos"
-import { type todos } from "./Todos";
+import { type image } from "../pages/Todos"
+import { type todos } from "../pages/Todos";
 import "react-datepicker/dist/react-datepicker.css"
 import DatePicker from "react-datepicker";
 
@@ -96,7 +96,7 @@ export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen
             {editModalOpen && clickedEditTodo && (
                 <section className="editContainer">
                     <div className="editTodoModalContainer">
-                        <IoClose className='closeEditTodo' onClick={() => {
+                        <IoClose data-testid="close-icon" className='closeEditTodo' onClick={() => {
                             setEditModalOpen(false)
                         }} />
                         {/*Show h3 element as input instead to be able to edit Todo*/}

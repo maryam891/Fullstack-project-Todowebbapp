@@ -1,13 +1,13 @@
 import Footer from "./components/Footer"
-import Home from './components/Home'
-import Todos from './components/Todos'
+import Home from './pages/Home'
+import Todos from './pages/Todos'
 import { createHashRouter, Outlet, RouterProvider } from 'react-router-dom'
-import Login from './components/Login'
-import Profile from './components/Profile'
+import Login from './pages/Login'
+import Profile from './pages/Profile'
 import NavBar from './components/NavBar'
 import { AuthStatusContext } from "./AuthContext"
 import { useState, useEffect } from 'react'
-import SignUp from './components/SignUp'
+import SignUp from './pages/SignUp'
 
 export interface User {
   email: string;
@@ -38,7 +38,6 @@ const router = createHashRouter([
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true)
 
@@ -48,6 +47,7 @@ function App() {
     localStorage.setItem("userId", JSON.stringify(user.userId));
     localStorage.setItem("userEmail", JSON.stringify(user.email));
     localStorage.setItem("isLoggedIn", JSON.stringify(true));
+    localStorage.setItem("userNameValue", JSON.stringify(user.name || ""));
 
 
   };

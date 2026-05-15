@@ -1,4 +1,4 @@
-import type { todos } from '../components/Todos'
+import type { todos } from '../pages/Todos'
 import { IoClose } from "react-icons/io5";
 
 export interface TodoModalProps {
@@ -11,12 +11,12 @@ export default function TodoModal({ clickedTodo, modalOpen, setModalOpen }: Todo
         <>
             {modalOpen && clickedTodo &&
                 <div className="todoModalContainer">
-                    <IoClose className='closeTodo' onClick={() => {
+                    <IoClose data-testid="close-icon" className='closeTodo' onClick={() => {
                         setModalOpen(false)
                     }} />
-                    <h3>
+                    <h1>
                         {clickedTodo.Todos}
-                    </h3>
+                    </h1>
                     <p>{clickedTodo.todo_description}</p>
 
                     {/*Check if modal is clicked and a date is chosen to show in details*/}

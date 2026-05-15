@@ -206,12 +206,12 @@ export default function SignUp() {
                             <CiUser className="profileIconImage" />
                         </div>
 
-                        <label>Name</label>
+                        <label htmlFor="name">Name</label>
                         {/*Show error message if filed is empty when signing up*/}
                         {submitted && signUpForm?.name.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in name</p>}
                         {/*Show error message if length of name is less than 2*/}
                         {signUpForm?.name.trim().length < 2 && signUpForm?.name.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Name must be at least 2 characters</p>}
-                        <input type="text" name="name" value={signUpForm.name} style={styles.nameInput} onChange={(event) => {
+                        <input id="name" type="text" name="name" value={signUpForm.name} style={styles.nameInput} onChange={(event) => {
 
                             setSignUpForm({
                                 ...signUpForm,
@@ -253,12 +253,12 @@ export default function SignUp() {
 
                         }}></input>
 
-                        <label>Password</label>
+                        <label htmlFor="password">Password</label>
                         {/*Show error message if filed is empty when signing up*/}
                         {submitted && signUpForm?.password.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in password</p>}
                         {/*Show error message if length of password is less than 8*/}
                         {signUpForm?.password.trim().length < 8 && signUpForm?.password.trim().length > 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}> Password must be at least 8 characters</p>}
-                        <input type="password" name="password" style={styles.passwordInput}
+                        <input id="password" type="password" name="password" style={styles.passwordInput}
                             value={signUpForm.password} onChange={(event) => {
 
                                 setSignUpForm({
@@ -275,12 +275,12 @@ export default function SignUp() {
 
 
                             }}></input>
-                        <label>Confirm password</label>
+                        <label htmlFor="confirm-password">Confirm password</label>
                         {/*Show error message if filed is empty when signing up*/}
                         {submitted && signUpForm?.confirmPassword.trim().length === 0 && <p style={{ color: "rgb(134, 19, 48)", fontSize: "13px", margin: 0 }}>Please fill in confirm password</p>}
                         {/*Show error message if length of confirm password is less than 8 and does not match password written in password field*/}
                         {signUpForm?.confirmPassword.trim().length < 8 && signUpForm?.confirmPassword.trim().length > 0 && signUpForm.password !== signUpForm.confirmPassword && <p className="confirmPassword-Error"> Password must be at least 8 characters and match password field</p>}
-                        <input type="password" name="confirmPassword" style={styles.confirmPasswordInput} value={signUpForm.confirmPassword} onChange={(event) => {
+                        <input id="confirm-password" type="password" name="confirmPassword" style={styles.confirmPasswordInput} value={signUpForm.confirmPassword} onChange={(event) => {
 
                             setSignUpForm({
                                 ...signUpForm,

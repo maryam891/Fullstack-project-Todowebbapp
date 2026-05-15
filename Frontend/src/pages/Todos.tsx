@@ -10,7 +10,7 @@ import { Modal, Button, Form } from 'react-bootstrap'
 import { useContext } from "react";
 import { AuthStatusContext } from "../AuthContext";
 import TodoModal from "../components/TodoModal"
-import { EditTodoModal } from "./EditTodoModal";
+import { EditTodoModal } from "../components/EditTodoModal";
 import "react-datepicker/dist/react-datepicker.css"
 import DatePicker from "react-datepicker";
 
@@ -309,7 +309,7 @@ export default function Todos() {
                                                 setModalOpen(true)
                                                 setClickedTodo(UserTodos)
                                             }}>Details</p>
-                                            <h3>
+                                            <h3 data-testid="todo-item">
                                                 {UserTodos.Todos}
                                             </h3>
                                             <div className="todoImgContainer">
