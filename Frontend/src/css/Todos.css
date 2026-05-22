@@ -175,7 +175,7 @@
 
 .profileButton {
     height: 40px;
-    width: 110px;
+    min-width: 110px;
     font-size: 0.9rem;
     background-color: #D2A8E2;
     color: #081051;
@@ -188,6 +188,15 @@
 .profileButton:hover {
     transform: scale(1.1);
     box-shadow: #191919 1px 1px 1px;
+}
+
+.closeTodo {
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    left: 92%;
+    top: 1%;
+    cursor: pointer;
 }
 
 
@@ -447,6 +456,11 @@
         flex-direction: column;
     }
 
+    .todoButton {
+        min-width: 150px;
+
+    }
+
 
     .todosTextBtnContainer {
         width: 100%;
@@ -620,6 +634,14 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+    }
+
+    .closeTodo {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        left: 88%;
+        top: 1%;
     }
 }
 
@@ -945,7 +967,7 @@
     }
 
     .todoButton {
-        min-width: 170px;
+        min-width: 150px;
 
     }
 
