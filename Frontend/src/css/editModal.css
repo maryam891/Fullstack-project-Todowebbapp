@@ -104,6 +104,12 @@
     cursor: pointer;
 }
 
+.editTodoBtnContainer button:hover {
+    background-color: #D2A8E2;
+    border: none;
+    color: #081051
+}
+
 .closeEditTodo {
     height: 30px;
     width: 30px;
