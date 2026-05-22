@@ -145,11 +145,18 @@
         text-align: center;
     }
 
+    .loginPopUpErr {
+        margin-left: 10%;
+    }
+
 
 }
 
 @media screen and (max-width: 500px) and (min-width: 407px) {
 
+    .loginPopUpErr {
+        margin-left: 20%;
+    }
 
     #loginSection form {
         height: 370px;
@@ -170,6 +177,7 @@
     #loginSection h1 {
         text-align: center;
     }
+
 
 
 }
@@ -203,6 +211,10 @@
 
     .loginText {
         font-size: 1rem;
+    }
+
+    .loginPopUpErr {
+        margin-left: 20%;
     }
 }
 

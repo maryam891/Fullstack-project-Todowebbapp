@@ -84,7 +84,7 @@ export default function Home() {
                     </div>
                 </main >
                 :
-                <main className="HomeLogedOut">
+                <main className="HomeLoggedOut">
                     <div className="textBtnContainer">
                         <div className="homeHeaderSection">
                             <h1>

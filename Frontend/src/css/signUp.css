@@ -62,7 +62,7 @@
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 7px;
     height: 200px;
-    width: 400px;
+    width: 300px;
 }
 
 #signUpSection input {
@@ -122,6 +122,10 @@
 
 
 @media screen and (max-width: 407px) and (min-width: 360px) {
+    .errorPopUp {
+        margin-left: 10%;
+    }
+
     .Signup {
         width: 74%;
         transform: translate(20%, 5%);
@@ -133,7 +137,7 @@
     #signUpSection form {
         justify-content: center;
         align-items: center;
-        min-height: 850px;
+        min-height: 880px;
         width: auto;
 
     }
@@ -177,6 +181,11 @@
     }
 
 
+    .errorPopUp {
+        margin-left: 20%;
+    }
+
+
     #signUpSection h1 {
         text-align: center;
     }
@@ -201,6 +210,11 @@
 }
 
 @media screen and (max-width: 646px) and (min-width:500px) {
+
+    .errorPopUp {
+        margin-left: 20%;
+    }
+
     .Signup {
         width: 70%;
         transform: translate(20%, 5%);
