@@ -295,25 +295,28 @@ export default function Todos() {
                                             </Modal.Footer>
                                         </Modal>
                                         <div className="todoContainer">
-                                            <input type="checkbox" onChange={(event) => changeCheckState(event, UserTodos.id)}
-                                                //When a checkbox is checked it will be true(1)
-                                                checked={UserTodos.completed_todo === 1}></input>
-                                            <RiDeleteBin6Line className="dustbin" onClick={() => clickRemoveTodo(UserTodos.id)} />
-                                            <LuPencil className="editPencil" onClick={() => {
-                                                setOpenEditImages(true)
-                                                setClickedEditTodo(UserTodos)
-                                                setEditModalOpen(true)
-                                            }} />
-                                            <p onClick={() => {
-                                                //Show details of one todo when clicking on details
-                                                setModalOpen(true)
-                                                setClickedTodo(UserTodos)
-                                            }}>Details</p>
+                                            <div className="todoTopRow">
+                                                <input type="checkbox" onChange={(event) => changeCheckState(event, UserTodos.id)}
+                                                    //When a checkbox is checked it will be true(1)
+                                                    checked={UserTodos.completed_todo === 1}></input> <RiDeleteBin6Line className="dustbin" onClick={() => clickRemoveTodo(UserTodos.id)} /></div>
                                             <h3 data-testid="todo-item">
                                                 {UserTodos.Todos}
                                             </h3>
                                             <div className="todoImgContainer">
                                                 <img src={UserTodos.image}></img>
+                                            </div>
+                                            <div className="todoBottomRow">
+
+                                                <p onClick={() => {
+                                                    //Show details of one todo when clicking on details
+                                                    setModalOpen(true)
+                                                    setClickedTodo(UserTodos)
+                                                }}>Details</p>
+                                                <LuPencil className="editPencil" onClick={() => {
+                                                    setOpenEditImages(true)
+                                                    setClickedEditTodo(UserTodos)
+                                                    setEditModalOpen(true)
+                                                }} />
                                             </div>
                                         </div>
                                     </div>

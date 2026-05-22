@@ -48,6 +48,11 @@
 }
 
 .todoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    padding: 10px;
     cursor: pointer;
     height: 100%;
     width: 250px;
@@ -56,18 +61,21 @@
     box-shadow: 3px 4px 4px
 }
 
-.todoContainer p {
-    position: relative;
-    top: 75%;
-    left: 5%;
-    color: #081051;
-    font-weight: 400;
-    width: 100px;
+.todoTopRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
-.todoContainer p:hover {
-    transform: scale(1.1);
+.todoBottomRow {
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 
 
 .textContainer {
@@ -85,7 +93,6 @@
 .todoContainer h3 {
     text-align: center;
     padding: 10px;
-    margin-top: 20px;
     margin-top: 10px;
     font-weight: 300;
     font-size: 1.4rem;
@@ -98,15 +105,6 @@
     justify-content: right;
     width: 95%;
     height: 70px;
-}
-
-.closeTodo {
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    left: 94%;
-    top: 1%;
-    cursor: pointer;
 }
 
 .completedTodoHeader h2 {
@@ -131,31 +129,10 @@
     margin-left: 10px;
 }
 
-.dustbin {
-    position: relative;
-    left: 80%;
-    top: 4%;
-    color: #081051;
-    cursor: pointer;
-    height: 18px;
-    width: 18px;
-}
 
-.dustbin:hover {
-    transform: scale(1.1);
-}
-
-.editPencil {
-    position: relative;
-    left: 74%;
-    top: 88%;
-    color: #081051;
-    cursor: pointer;
-    height: 18px;
-    width: 18px;
-}
-
-.editPencil:hover {
+.dustbin:hover,
+.editPencil:hover,
+.todoContainer p:hover {
     transform: scale(1.1);
 }
 
@@ -171,7 +148,8 @@
 
 .todoButton {
     height: 40px;
-    width: 120px;
+    width: auto;
+    min-width: 120px;
     font-size: 0.9rem;
     background-color: white;
     color: #081051;
@@ -228,9 +206,6 @@
 .Todos input {
     height: 17px;
     width: 17px;
-    position: relative;
-    left: 5%;
-    top: 5%;
     cursor: pointer;
 }
 
@@ -604,11 +579,6 @@
         text-align: left;
     }
 
-    .todoButton {
-        width: 120px;
-
-    }
-
     .profileButton {
         width: 120px;
     }
@@ -628,19 +598,6 @@
         width: 100%;
         height: 100%;
 
-    }
-
-    .dustbin {
-        top: 2%;
-        height: 24px;
-        width: 24px;
-    }
-
-    .editPencil {
-        height: 24px;
-        width: 24px;
-        top: 84%;
-        left: 72%;
     }
 
     .Todos input {
@@ -669,6 +626,15 @@
 @media screen and (min-width:360px) and (max-width:380px) {
 
     /*Todos logedin layout*/
+    .dustbin {
+        height: 24px;
+        width: 24px;
+    }
+
+    .editPencil {
+        height: 24px;
+        width: 24px;
+    }
 
     .addTodoContainer {
         flex-direction: column;
@@ -790,14 +756,11 @@
     .dustbin {
         height: 24px;
         width: 24px;
-        top: 2%
     }
 
     .editPencil {
         height: 24px;
         width: 24px;
-        top: 84%;
-        left: 72%;
     }
 
     .Todos input {
@@ -982,7 +945,7 @@
     }
 
     .todoButton {
-        width: 170px;
+        min-width: 170px;
 
     }
 
@@ -1128,8 +1091,6 @@
     .editPencil {
         height: 26px;
         width: 26px;
-        left: 74%;
-        top: 84%
     }
 
     .Todos input {
@@ -1299,8 +1260,6 @@
     .editPencil {
         height: 24px;
         width: 24px;
-        left: 75%;
-        top: 84%
     }
 
     .Todos input {
