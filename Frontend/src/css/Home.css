@@ -183,7 +183,7 @@
 
 }
 
-.HomeLogedOut button:hover {
+.HomeLoggedOut button:hover {
     transform: scale(1.1);
     box-shadow: #191919 1px 1px 1px;
 }
