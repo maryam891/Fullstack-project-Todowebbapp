@@ -6,7 +6,7 @@ import todoBackgroundImg from '../assets/todoBackgroundImg.svg'
 import todoBackgroundImg2 from '../assets/todoBackgroundImg2.svg'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { LuPencil } from "react-icons/lu";
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Form } from 'react-bootstrap'
 import { useContext } from "react";
 import { AuthStatusContext } from "../AuthContext";
 import TodoModal from "../components/TodoModal"
@@ -60,48 +60,51 @@ export default function Todos() {
 
     {/*Function to get all todos*/ }
     {/*Send userId, email and password to backend to compare and receive back data of user that is logged in*/ }
-    function getTodos() {
-        fetch(`${import.meta.env.VITE_API_URL}/Todos`, {
-            method: 'POST',
-            body: JSON.stringify({ id: User?.currentUser?.userId, Email: User?.currentUser?.email, Password: User?.currentUser?.password }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => response.json())
-            .then((data: todos[]) => {
-                setTodos(data)
-
+    async function getTodos() {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${User?.currentUser?.userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                },
             })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+            if (!response.ok) {
+                return
+            }
+            const result = await response.json()
+            setTodos(result)
+        }
+        catch (err) {
+            console.log(err, 'Could not get todos');
+        }
+
+
     }
 
 
     {/*Check which todos that are checked(true in backend(1)) and filter out all the todos that are checked)*/ }
     const completedTodos = userTodos.filter(completedTodo => completedTodo.completed_todo === 1).length
-    function changeCheckState(event: React.ChangeEvent<HTMLInputElement>, id: number) {
+    async function changeCheckState(event: React.ChangeEvent<HTMLInputElement>, id: number) {
         {/*Send the event target change to backend but also check if the todo is checked(1) or not checked(0)*/ }
         const isChecked = event.target.checked;
-        fetch(`${import.meta.env.VITE_API_URL}/updateCompletedTodos`, {
-            method: 'POST',
-            body: JSON.stringify({ completed_todo: isChecked ? 1 : 0, id: id, user_id: User?.currentUser?.userId }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => {
-                if (response.ok) {
-                    getTodos()
-                }
-
-
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/todo/${id}`, {
+                method: 'POST',
+                body: JSON.stringify({ completed_todo: isChecked ? 1 : 0, id: id, user_id: User?.currentUser?.userId }),
+                headers: {
+                    'Content-type': 'application/json',
+                },
             })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+            if (!response.ok) {
+                return
+            }
+            await response.json()
+            getTodos()
+        }
+        catch (error) {
+            console.log(error, 'Failed to add check to todo');
 
+        }
 
 
     }
@@ -126,67 +129,73 @@ export default function Todos() {
     }
 
     {/*Send clicked id to backend to delete todo*/ }
-    function removeTodo(id: number) {
-        fetch(`${import.meta.env.VITE_API_URL}/DeleteTodo`, {
-            method: 'DELETE',
-            body: JSON.stringify({ id: id }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => {
-                if (response.ok) {
-                    {/*Call function again to get all todos again after deleting a todo*/ }
-                    getTodos()
-                }
-                else {
-                    console.log('error');
-                }
-
+    async function removeTodo(id: number) {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/todo/${id}`, {
+                method: 'DELETE',
+                body: JSON.stringify({ user_id: User?.currentUser?.userId }),
+                headers: {
+                    'Content-type': 'application/json',
+                },
             })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+            if (!response.ok) {
+                return
+            }
+            await response.json()
+            {/*Call function again to get all todos again after deleting a todo*/ }
+            getTodos()
+        }
+
+
+        catch (err) {
+            console.log(err, 'Failed to delete todo');
+        };
 
 
     }
 
-    function addNewTodo() {
+    async function addNewTodo() {
         setShowAddTodoContainer(true)
         //Get images from todoImages table to select an image for your todo
 
-        fetch(`${import.meta.env.VITE_API_URL}/getImages`)
-            .then((response) => response.json())
-            .then((result) => {
-                setgetImages(result)
-            })
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/get-images`)
+
+            if (!response.ok) {
+                return
+            }
+            const result = await response.json()
+
+            setgetImages(result)
+        }
+        catch (error) {
+            console.log(error, "Could not get images")
+        }
 
     }
 
     //Send new values to backend and save todo
-
-    function saveTodo() {
-        fetch(`${import.meta.env.VITE_API_URL}/addNewTodo`, {
-            method: 'POST',
-            body: JSON.stringify({ Todos: addTodoTitle, todo_description: addTodoText, image_id: selectedImg, user_id: User?.currentUser?.userId, chosen_date: selectedDateTime }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => {
-                if (response.ok) {
-                    setShowAddTodoContainer(false)
-                    {/*Call function again to get all todos again after saving todo*/ }
-                    getTodos()
-                }
-                else {
-                    console.log('error');
-                }
-
+    async function saveTodo() {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/add-new-todo`, {
+                method: 'POST',
+                body: JSON.stringify({ Todos: addTodoTitle, todo_description: addTodoText, image_id: selectedImg, user_id: User?.currentUser?.userId, chosen_date: selectedDateTime }),
+                headers: {
+                    'Content-type': 'application/json',
+                },
             })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+            if (!response.ok) {
+                return
+            }
+            await response.json()
+            setShowAddTodoContainer(false)
+            {/*Call function again to get all todos again after saving todo*/ }
+            getTodos()
+        }
+
+        catch (error) {
+            console.log(error, 'Failed to add new todo');
+        };
 
     }
     {/*Show addTodoContainer when clicking on add todo button*/ }
@@ -225,9 +234,9 @@ export default function Todos() {
                     />
                 </form>
                 <label className="chooseImgText">Choose image(Optional):</label>
-                {GetImages && GetImages.map((img, index) => (
+                {GetImages && GetImages.map((img) => (
                     //Check if image that is clicked is equal to img.id to show image background when selecting img else default styling
-                    <label className={selectedImg === img.id ? "imageOption selected" : "imageOption"} key={index}>
+                    <label className={selectedImg === img.id ? "imageOption selected" : "imageOption"} key={img.id}>
                         <input type="radio" name="img" checked={selectedImg === img.id} value={img.id} style={{ opacity: '0' }} onChange={(e) => {
                             //Convert to number to compare same values
                             setSelectedImg(Number(e.currentTarget.value))
@@ -280,18 +289,19 @@ export default function Todos() {
                         </div> : ""}
                         <div className="todoFlexContainer">
                             {userTodos && !modalOpen && !editModalOpen &&
-                                userTodos.map((UserTodos, index) => (
-                                    <div key={index} >
-                                        <Modal show={showDelPopup === UserTodos.id} className="deletePopup">
+                                userTodos.map((UserTodos) => (
+                                    <div key={UserTodos.id} >
+                                        <Modal show={showDelPopup === UserTodos.id}
+                                            onHide={() => setShowDelPopup(null)} className="deletePopup">
                                             <Modal.Header className="delHeader">
                                                 <Modal.Title>Delete todo</Modal.Title>
                                             </Modal.Header>
                                             <Modal.Body className="delHeader2">Are you sure you want to remove todo?</Modal.Body>
                                             <Modal.Footer>
-                                                <Button onClick={() => removeTodo(UserTodos.id)}>Yes</Button>
-                                                <Button onClick={handleHide} variant="primary">
+                                                <button onClick={() => removeTodo(UserTodos.id)}>Yes</button>
+                                                <button onClick={handleHide}>
                                                     No
-                                                </Button>
+                                                </button>
                                             </Modal.Footer>
                                         </Modal>
                                         <div className="todoContainer">
@@ -303,7 +313,7 @@ export default function Todos() {
                                                 {UserTodos.Todos}
                                             </h3>
                                             <div className="todoImgContainer">
-                                                <img src={UserTodos.image}></img>
+                                                <img src={UserTodos.image} alt={UserTodos.Todos}></img>
                                             </div>
                                             <div className="todoBottomRow">
 
@@ -336,7 +346,7 @@ export default function Todos() {
 
                     </main>}
 
-            {clickedTodo && modalOpen && <TodoModal clickedTodo={clickedTodo} setModalOpen={setModalOpen} modalOpen={modalOpen} />}
+            {clickedTodo && modalOpen && <TodoModal clickedTodo={clickedTodo} setModalOpen={setModalOpen} />}
 
             {clickedEditTodo && editModalOpen && <EditTodoModal clickedEditTodo={clickedEditTodo} setEditModalOpen={setEditModalOpen} editModalOpen={editModalOpen} openEditImages={openEditImages} setOpenEditImages={setOpenEditImages} setTodos={setTodos} Todos={userTodos} getTodos={getTodos} />}
         </>

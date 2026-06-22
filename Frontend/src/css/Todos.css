@@ -386,6 +386,25 @@
     box-shadow: 0 0 10px rgba(8, 16, 81, 0.5);
 }
 
+.deletePopup button {
+    height: 35px;
+    width: 90px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border: solid 2px #D2A8E2;
+    color: #081051;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.deletePopup button:hover {
+    transform: translate(1.1);
+}
+
+
+
 /*Todos logedout layout*/
 
 .logedOutLayout h1 {

@@ -7,11 +7,13 @@ import todoImage from "../assets/todoImage.svg"
 import seeProgressicon from "../assets/progressIcon.svg"
 import addSticker from "../assets/addSticker.svg"
 import Spinner from 'react-bootstrap/Spinner';
+import { Modal } from "react-bootstrap";
 
 
 export interface Home {
     Todos: string,
-    image: string
+    image: string,
+    id: number
 }
 
 
@@ -24,25 +26,34 @@ export default function Home() {
     const navigate = useNavigate();
     //Use values from useContext
     const user = useContext(AuthStatusContext)
-    const [userInfo, setUserInfo] = useState<Home[]>([])
+    const [todos, setTodos] = useState<Home[]>([])
+    const [getUserTodosErrPopUp, setGetUserTodosErrPopUp] = useState(false)
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/Home`, {
-            method: 'POST',
-            body: JSON.stringify({ id: user?.currentUser?.userId }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setUserInfo(data);
-            })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+        const getCurrentUser = async () => {
+            try {
 
-    }, [user])
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${user?.currentUser?.userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                })
+                if (!response.ok) {
+                    setGetUserTodosErrPopUp(true)
+                    return
+                }
+                const result = await response.json()
+                setTodos(result);
+            }
+            catch (error) {
+                setGetUserTodosErrPopUp(true)
+                console.log(error, 'Could not get user todos');
+            }
+        }
+        getCurrentUser()
+
+    }, [user?.currentUser?.userId, user])
 
     //Show loading spinner when refreshing page when loading === true
     if (user?.isLoading) {
@@ -52,30 +63,38 @@ export default function Home() {
     }
     return (
         <>
+            <Modal show={getUserTodosErrPopUp === true} onHide={() => setGetUserTodosErrPopUp(false)}>
+                <Modal.Header>
+                    <Modal.Title style={{ color: "#081051" }}>Could not get user todos!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <button className="close-btn" onClick={() => setGetUserTodosErrPopUp(false)}>Ok</button>
+                </Modal.Body>
+            </Modal>
             {/*Check if the user is loged in to show logedin layout else show other layout*/}
             {user?.isLoggedIn === true ?
-                <main className="HomeLogedIn">
+                <main className="HomeLoggedIn">
                     <div className="homePagetextbtnContainer">
                         <div className="homeLoginHeaderSection">
                             <h1>
                                 {/*Render name of user that is logged in*/}
                                 Welcome {user?.currentUser?.name}!
                             </h1>
-                            {userInfo.length > 0 ? <h2>Here are your todos</h2> : <div style={{ height: "500px" }}><h2>You don't have any todos, start adding todos!</h2> <button className="homeTodosBtn" style={{ marginTop: "10px" }} onClick={() => navigate("/Todos")}>Todos</button></div>}
+                            {todos.length > 0 ? <h2>Here are your todos</h2> : <div style={{ height: "500px" }}><h2>You don't have any todos, start adding todos!</h2> <button className="homeTodosBtn" style={{ marginTop: "10px" }} onClick={() => navigate("/Todos")}>Todos</button></div>}
 
                         </div>
                     </div>
                     <div className="hompageloginTodoContainer">
                         {/*Show todos of the user that is logged in*/}
-                        {userInfo &&
-                            userInfo.map((userTodos, index) => (
-                                <div key={index}>
+                        {
+                            todos.map((userTodos) => (
+                                <div key={userTodos?.id}>
                                     <div className="homepageLoginTodoSection">
                                         <h3 data-testid="todo-item">
                                             {userTodos.Todos}
                                         </h3>
                                         <div className="homepageLoginImgContainer" >
-                                            <img src={userTodos.image}></img>
+                                            <img src={userTodos.image} alt={userTodos.Todos}></img>
                                         </div>
                                     </div>
                                 </div>
@@ -95,26 +114,26 @@ export default function Home() {
                             </h2>
                         </div>
                         <div>
-                            <button className="HomeLogedInBtn" onClick={() => {
+                            <button className="HomeBtn" onClick={() => {
                                 navigate("/SignUp")
                             }}>Get started</button>
                         </div>
                     </div>
-                    <div className="homePageTodoContainerLogedOut">
-                        <div className="homePageTodoSectionLogedOut">
+                    <div className="homePageTodoContainerLoggedOut">
+                        <div className="homePageTodoSectionLoggedOut">
                             <h3>
                                 Add todos
                             </h3>
                             <img src={todoIcon} className="homePageTodoImg"></img>
                         </div>
-                        <div className="homePageTodoSectionLogedOut">
+                        <div className="homePageTodoSectionLoggedOut">
                             <h3>
                                 See your progress
 
                             </h3>
                             <img src={progressIcon} className="homePageTodoImg"></img>
                         </div>
-                        <div className="homePageTodoSectionLogedOut">
+                        <div className="homePageTodoSectionLoggedOut">
                             <h3>
                                 Add images to your todos
                             </h3>

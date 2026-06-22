@@ -5,8 +5,6 @@ import { AuthStatusContext } from "../AuthContext";
 import { useContext } from "react";
 import { Modal } from "react-bootstrap"
 
-
-
 export default function Login() {
     const User = useContext(AuthStatusContext)
     const [loginForm, setLoginForm] = useState({
@@ -42,68 +40,47 @@ export default function Login() {
     };
 
     {/*Login function for login button*/ }
-    function Login(event: React.MouseEvent) {
+    async function Login(event: React.MouseEvent) {
         event.preventDefault()
         setSubmitted(true)
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Email: loginForm.email, Password: loginForm.password })
+
+        if (!loginForm.email || !loginForm.password) {
+            setFieldErrors({ emailField: false, passwordField: false })
+            setShowLoginErrPopUp(true)
+            return
         }
-        {/*Check if the input field is not empty to send input data to backend*/ }
-        if (loginForm.email.trim().length !== 0 && loginForm.password.trim().length !== 0) {
-            fetch(`${import.meta.env.VITE_API_URL}/Login`, requestOptions)
-                .then((res) => {
-                    if (res.status === 200) {
-                        return res.json()
-                    }
-                    else {
-                        setShowLoginErrPopUp(true)
-
-                    }
-                })
-
-                .then((result) => {
-                    console.log("Backend svar:", result[0])
-
-                    {/*Compare if the input has the same values as in the backend*/ }
-                    if (loginForm.email && loginForm.email === result[0].Email && loginForm.password && loginForm.password === result[0].Password) {
-                        {/*Save user id of the user that logs in to retrive in profile page*/ }
-
-                        //Check if useContext values exists and set values to localstorage values and loginForm values
-
-                        if (User) {
-                            User.login({ email: loginForm.email, password: loginForm.password, userId: result[0].id, name: result[0].Name })
-                            setFieldErrors({ emailField: false, passwordField: false })
-                            setSubmitted(false)
-                            setShowPopUp(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/Login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Email: loginForm.email, Password: loginForm.password })
+            })
+            if (!response.ok) {
+                setShowLoginErrPopUp(true)
+                return
+            }
 
 
-                        }
+            const result = await response.json()
+            console.log(result)
 
-                    }
-                    else {
-                        setShowLoginErrPopUp(true)
-                        User?.logout()
-                        setFieldErrors({ emailField: true, passwordField: true })
-                    }
 
-                })
-                .catch(() => {
-                    setShowLoginErrPopUp(true)
-                });
+            //Check if useContext values exists and set values to localstorage values and loginForm values
+            if (User !== null) {
+                User.login({ email: result.Email, userId: result.id, name: result.Name })
+                setFieldErrors({ emailField: false, passwordField: false })
+                setSubmitted(false)
+                setShowPopUp(true);
+
+
+            }
 
         }
-        else if (loginForm.email.trim().length !== 0 && loginForm.password.trim().length === 0) {
-            setFieldErrors({ emailField: false, passwordField: true })
-        }
-        else if (loginForm.password.trim().length !== 0 && loginForm.email.trim().length === 0) {
-            setFieldErrors({ emailField: true, passwordField: false })
-        }
+        catch (error) {
+            setShowLoginErrPopUp(true);
+            console.log(error, "could not login, invalid email or password")
 
-        else {
-            setFieldErrors({ emailField: true, passwordField: true })
-        }
+        };
 
     }
     return (
@@ -121,7 +98,7 @@ export default function Login() {
                             <button onClick={() => setShowLoginErrPopUp(false)} className="loginErrBtn">Ok</button>
                         </Modal.Footer>
                     </Modal>
-                    <Modal show={showPopUp} dialogClassName="welcomePopup">
+                    <Modal show={showPopUp} onHide={() => setShowPopUp(false)} dialogClassName="welcomePopup">
                         <Modal.Header>
                             <Modal.Title>Welcome back {User?.currentUser?.name}!</Modal.Title>
                         </Modal.Header>

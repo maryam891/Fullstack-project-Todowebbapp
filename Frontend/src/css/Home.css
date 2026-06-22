@@ -1,5 +1,5 @@
-/*Home logedin layout*/
-.HomeLogedIn {
+/*Home loggedin layout*/
+.HomeLoggedIn {
     margin-top: 10px;
     padding-top: 10px;
     height: 100%;
@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-.HomeLogedInBtn {
+.HomeBtn {
     height: 40px;
     width: 126px;
     font-size: 0.9rem;
@@ -20,28 +20,28 @@
     cursor: pointer;
 }
 
-.HomeLogedIn button:hover {
+.HomeLoggedIn button:hover {
     background-color: #D2A8E2;
     border: none;
     transform: scale(1.1);
     box-shadow: #191919 1px 1px 1px;
 }
 
-.HomeLogedIn h2 {
+.HomeLoggedIn h2 {
     font-weight: 500;
     padding-top: 15px;
     color: #081051;
 }
 
 
-.HomeLogedIn h3 {
+.HomeLoggedIn h3 {
     text-align: center;
     margin-top: 20px;
     font-weight: 300;
     color: #081051;
 }
 
-.HomeLogedIn h1 {
+.HomeLoggedIn h1 {
     font-weight: 400;
     color: #081051;
 }
@@ -63,7 +63,7 @@
     box-shadow: #191919 1px 1px 1px;
 }
 
-.HomeLogedIn input {
+.HomeLoggedIn input {
     height: 18px;
     width: 18px;
     margin-left: 10px;
@@ -133,6 +133,22 @@
     flex-direction: column;
 }
 
+.close-btn {
+    height: 40px;
+    width: 110px;
+    font-size: 0.9rem;
+    background-color: #D2A8E2;
+    color: #081051;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.close-btn:hover {
+    transform: scale(1.1);
+}
+
 
 .textBtnContainer {
     display: flex;
@@ -157,6 +173,34 @@
     font-weight: 300;
     color: #081051;
 }
+
+
+
+.HomeLoggedOut button:hover {
+    transform: scale(1.1);
+    box-shadow: #191919 1px 1px 1px;
+}
+
+.homePageTodoContainerLoggedOut {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+
+
+.homeHeaderSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 
 .HomeLoggedOut h1 {
     font-weight: 400;
@@ -188,132 +232,30 @@
     box-shadow: #191919 1px 1px 1px;
 }
 
-.homePageTodoContainerLogedOut {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    flex-wrap: wrap;
-    justify-content: left;
-    align-items: center;
-    height: 100%;
-    margin-top: 30px;
-    gap: 20px;
-}
-
-.homePageTodoSectionLogedOut {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 270px;
-    width: 270px;
-    background-color: rgba(255, 255, 255, 0.48);
-    border-radius: 10px;
-    box-shadow: 3px 4px 4px;
-}
-
-
-/*Home Loged out layout*/
-
-.HomeLoggedOut {
-    margin-top: 10px;
-    padding-top: 10px;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.textBtnContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 20px;
-    width: 85%;
-    height: 200px;
-}
-
-.homeHeaderSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.HomeLoggedOut h3 {
-    text-align: center;
-    margin-top: 20px;
-    font-weight: 300;
-    color: #081051;
-}
-
-.HomeLoggedOut h1 {
-    font-weight: 400;
-    color: #081051;
-}
-
-.HomeLoggedOut h2 {
-    font-weight: 400;
-    padding-top: 15px;
-    color: #081051;
-}
-
-
-.HomeLogedOut button {
-    height: 40px;
-    width: 110px;
-    font-size: 1rem;
-    background-color: #D2A8E2;
-    margin-right: 10px;
-    color: #081051;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-
-}
-
-.HomeLogedOut button:hover {
-    transform: scale(1.1);
-    box-shadow: #191919 1px 1px 1px;
-}
-
-.homePageTodoContainerLogedOut {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    flex-wrap: wrap;
-    justify-content: left;
-    align-items: center;
-    height: 100%;
-    margin-top: 30px;
-    gap: 20px;
-}
-
-.homePageTodoSectionLogedOut {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 270px;
-    width: 270px;
-    background-color: rgba(255, 255, 255, 0.48);
-    border-radius: 10px;
-    box-shadow: 3px 4px 4px;
-}
 
 .homePageTodoImg {
     height: 200px;
     width: 150px;
 }
 
+.homePageTodoSectionLoggedOut {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 270px;
+    width: 270px;
+    background-color: rgba(255, 255, 255, 0.48);
+    border-radius: 10px;
+    box-shadow: 3px 4px 4px;
+}
+
 
 
 @media screen and (min-width:360px) and (max-width:480px) {
 
-    /*Home logedout layout*/
-    .homePageTodoContainerLogedOut {
+    /*Home loggedout layout*/
+    .homePageTodoContainerLoggedOut {
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -322,7 +264,7 @@
 
     }
 
-    .homePageTodoSectionLogedOut {
+    .homePageTodoSectionLoggedOut {
         height: 300px;
         width: 300px;
 
@@ -344,14 +286,14 @@
         margin-top: 30px;
     }
 
-    /*Home logedin layout*/
-    .HomeLogedIn {
+    /*Home loggedin layout*/
+    .HomeLoggedIn {
         width: 100%;
         justify-content: center;
     }
 
 
-    .HomeLogedIn input {
+    .HomeLoggedIn input {
         height: 20px;
         width: 20px;
     }
@@ -379,8 +321,8 @@
 
 @media screen and (min-width:480px) and (max-width:598px) {
 
-    /*Home logedout layout*/
-    .homePageTodoContainerLogedOut {
+    /*Home loggedout layout*/
+    .homePageTodoContainerLoggedOut {
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -389,7 +331,7 @@
 
     }
 
-    .homePageTodoSectionLogedOut {
+    .homePageTodoSectionLoggedOut {
         height: 300px;
         width: 300px;
 
@@ -412,14 +354,14 @@
         margin-top: 20px;
     }
 
-    /*Home logedin layout*/
-    .HomeLogedIn {
+    /*Home loggedin layout*/
+    .HomeLoggedIn {
         width: 90%;
         justify-content: center;
     }
 
 
-    .HomeLogedIn input {
+    .HomeLoggedIn input {
         height: 20px;
         width: 20px;
     }
@@ -444,9 +386,9 @@
 
 @media screen and (min-width: 598px) and (max-width: 680px) {
 
-    /*Home logedout layout*/
+    /*Home loggedout layout*/
 
-    .homePageTodoContainerLogedOut {
+    .homePageTodoContainerLoggedOut {
         margin-left: 20px;
     }
 
@@ -458,25 +400,25 @@
         margin-bottom: 20px;
     }
 
-    .HomeLogedOut button {
+    .HomeLoggedOut button {
         margin-top: 30px;
 
     }
 
-    .HomeLogedOut h3 {
+    .HomeLoggedOut h3 {
         padding: 10px;
     }
 
 
-    /*Home logedin layout*/
+    /*Home loggedin layout*/
 
-    .HomeLogedIn {
+    .HomeLoggedIn {
         width: 90%;
         justify-content: center;
     }
 
 
-    .HomeLogedIn input {
+    .HomeLoggedIn input {
         height: 20px;
         width: 20px;
     }
@@ -497,7 +439,7 @@
         width: 140px;
     }
 
-    .homePageTodoContainerLogedOut {
+    .homePageTodoContainerLoggedOut {
         justify-content: center;
         align-items: center;
     }
@@ -506,7 +448,7 @@
 
 @media screen and (min-width:680px) and (max-width:909px) {
 
-    /*Home logedout layout*/
+    /*Home loggedout layout*/
     .textBtnContainer {
         flex-direction: column;
         justify-content: flex-start;
@@ -522,18 +464,18 @@
         margin-top: 10px;
     }
 
-    .homePageTodoContainerLogedOut {
+    .homePageTodoContainerLoggedOut {
         margin-left: 50px;
     }
 
 
-    /*Home logedin layout*/
-    .HomeLogedIn {
+    /*Home loggedin layout*/
+    .HomeLoggedIn {
         width: 90%;
     }
 
 
-    .HomeLogedIn input {
+    .HomeLoggedIn input {
         height: 19px;
         width: 19px;
     }

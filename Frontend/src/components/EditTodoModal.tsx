@@ -9,7 +9,7 @@ import { type todos } from "../pages/Todos";
 import "react-datepicker/dist/react-datepicker.css"
 import DatePicker from "react-datepicker";
 
-export interface editTodoModalProps {
+export interface EditTodoModalProps {
     clickedEditTodo: todos,
     editModalOpen: boolean,
     openEditImages: boolean,
@@ -19,74 +19,81 @@ export interface editTodoModalProps {
     setEditModalOpen: (value: boolean) => void,
     getTodos: () => void,
 }
-export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen, getTodos }: editTodoModalProps) {
+export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen, getTodos }: EditTodoModalProps) {
     //Use values from useContext
     const User = useContext(AuthStatusContext)
     const [editTodoTitle, setEditTodoTitle] = useState("")
-    const [GetImages, setgetImages] = useState<image[]>([])
+    const [todoImages, setTodoImages] = useState<image[]>([])
     const [editTodoText, setEditTodoText] = useState("")
-    const [changeImage, setChangeImage] = useState<string | undefined>(undefined)
+    const [previewImage, setPreviewImage] = useState<string | undefined>(undefined)
     const [selectedImg, setSelectedImg] = useState<number | null>(null);
     const [editDateTime, setEditDateTime] = useState<Date | null>(null)
 
 
-    useEffect(() => {
-        setEditModalOpen(true)
-        //Get images from todoImages table to select an image for your todo
-
-        fetch(`${import.meta.env.VITE_API_URL}/getImages`)
-            .then((response) => response.json())
-            .then((result) => {
-                setgetImages(result)
-            })
-        //Get images when opening the edit modal
-    }, [setEditModalOpen])
-
-    // Show default todo text title when opening the editmodal
+    //Sync selected todo =>
+    // Show default todo text title and description when opening the editmodal
     // Use ?? to ensure todo title is always a string and not undefined
     useEffect(() => {
         setEditTodoTitle(clickedEditTodo.Todos ?? "")
-    }, [editModalOpen, clickedEditTodo])
-
-    // Show default todo text when opening the editmodal
-    // Use ?? to ensure todo text is always a string and not undefined
-    useEffect(() => {
         setEditTodoText(clickedEditTodo.todo_description ?? "")
-    }, [editModalOpen, clickedEditTodo])
-
-    // Show default todo image when opening the editmodal
-    useEffect(() => {
         setSelectedImg(clickedEditTodo.image_id)
-        setChangeImage(clickedEditTodo.image)
-    }, [editModalOpen, clickedEditTodo])
-
-    useEffect(() => {
+        setPreviewImage(clickedEditTodo.image)
         if (clickedEditTodo.chosen_date) {
             setEditDateTime(new Date(clickedEditTodo.chosen_date));
         } else {
             setEditDateTime(null);
         }
-    }, [clickedEditTodo])
+    }, [editModalOpen, clickedEditTodo])
+
+
+    //Get images if edit todo modal is open
+    useEffect(() => {
+        if (!editModalOpen) {
+            return
+        }
+        const handleGetImages = async () => {
+            //Get images from todoImages table to select an image for your todo
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/get-images`)
+                if (!response.ok) {
+                    return
+                }
+                const result = await response.json()
+                setTodoImages(result)
+            }
+            catch (error) {
+                console.log(error, "could not get images")
+            }
+
+        }
+        handleGetImages()
+        //Get images when opening the edit modal
+    }, [editModalOpen])
+
     //Send the edited values to backend when clicking on save
-    function saveEditTodo(id: number) {
-        fetch(`${import.meta.env.VITE_API_URL}/editTodo`, {
-            method: 'PUT',
-            body: JSON.stringify({ Todos: editTodoTitle, todo_description: editTodoText, image_id: selectedImg, id: id, user_id: User?.currentUser?.userId, chosen_date: editDateTime ? editDateTime.toISOString() : null }),
-            //Check if ediDateTime exists to convert to string when sending to backend
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => response.json())
-            .then(() => {
-                setEditModalOpen(false)
-                getTodos()
-
-
+    async function saveEditTodo(id: number) {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/todo/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({ Todos: editTodoTitle, todo_description: editTodoText, image_id: selectedImg, id: id, user_id: User?.currentUser?.userId, chosen_date: editDateTime ? editDateTime.toISOString() : null }),
+                //Check if ediDateTime exists to convert to string when sending to backend
+                headers: {
+                    'Content-type': 'application/json',
+                },
             })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+            if (!response.ok) {
+                return
+            }
+            await response.json()
+            setEditModalOpen(false)
+            getTodos()
+
+        }
+
+
+        catch (error) {
+            console.log(error, 'error');
+        };
 
 
     }
@@ -127,26 +134,26 @@ export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen
                         {/*Check if image exists to edit image*/}
                         {clickedEditTodo.image ? <><label className="changeImgLabel">Change image:</label>
 
-                            <img src={changeImage}></img></> : <p></p>}
+                            <img src={previewImage}></img></> : <p></p>}
                     </div>
                     {clickedEditTodo.image ?
                         <>
 
                             <label className="changeImgText">Select image:</label>
                             <div className="editImageSelection">
-                                {GetImages && GetImages.map((img: image, index) => (
+                                {todoImages && todoImages.map((img: image) => (
                                     //Check if selectedImg is equal to img.id to show image background when selecting img else default styling
-                                    <label className={selectedImg === img.id ? "imageOption selected" : "imageOption"} key={index}>
+                                    <label className={selectedImg === img.id ? "imageOption selected" : "imageOption"} key={img.id}>
                                         <input type="radio" name="img" checked={selectedImg === img.id} value={img.id} style={{ opacity: '0' }} onChange={(e) => {
                                             {/*Change image of the todo when clicking on any image from the container*/ }
                                             {/*Convert value to a number since selectedId has a number value*/ }
                                             const selectedId = parseInt(e.currentTarget.value);
                                             setSelectedImg(selectedId);
                                             {/*Look for clicked image that matches image that is in GetImages and change default image in the todo to the selected image*/ }
-                                            const selectedImageObj = GetImages.find((img: image) => img.id === selectedId);
+                                            const selectedImageObj = todoImages.find((img: image) => img.id === selectedId);
 
                                             if (selectedImageObj) {
-                                                setChangeImage(selectedImageObj.image);
+                                                setPreviewImage(selectedImageObj.image);
                                             }
                                         }}>
                                         </input>

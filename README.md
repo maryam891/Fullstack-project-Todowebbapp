@@ -1,6 +1,7 @@
 # 📝 Fullstack Todo Web App
 
-A full-stack Todo web application built with React, TypeScript, Node.js/Express, and SQLite.
+A full-stack Todo web application built with React, TypeScript, Node.js/Express, and SQLite. Passwords are securely hashed using bcrypt before storage and validated using bcrypt.compare during authentication.
+
 Manage your tasks effortlessly – add, edit, and delete todos, and personalize them
 with fun images to keep things engaging.
 

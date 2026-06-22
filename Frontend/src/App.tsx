@@ -12,7 +12,6 @@ import SignUp from './pages/SignUp'
 export interface User {
   email: string;
   name?: string; //make name optional
-  password: string;
   userId: number;
 
 }
@@ -63,7 +62,7 @@ function App() {
   };
 
   const logout = () => {
-    setCurrentUser({ email: "", password: "", userId: 0, name: "" });
+    setCurrentUser(null);
     localStorage.clear()
     setIsLoggedIn(false);
   };
@@ -79,7 +78,6 @@ function App() {
       setCurrentUser({
         email: JSON.parse(storedEmail),
         name: storedUserName ? JSON.parse(storedUserName) : "",
-        password: "",
         userId: JSON.parse(storedUserId)
 
       });

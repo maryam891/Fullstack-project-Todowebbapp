@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import '../css/navbar.css'
 import { AuthStatusContext } from "../AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 
 export default function NavBarLoggedIn() {
     const User = useContext(AuthStatusContext)
-
+    const [menuOpen, setMenuOpen] = useState(false)
     const navigate = useNavigate();
 
     const profileNavigate = () => {
@@ -30,7 +32,6 @@ export default function NavBarLoggedIn() {
         }
 
     }
-    console.log(User?.currentUser?.name)
     return (
         <>
             {/*Check if user is logged in to show logged in navbar else logged out navbar*/}
@@ -51,28 +52,22 @@ export default function NavBarLoggedIn() {
                         </button>
                     </div>
                     {/*Hamburger menu*/}
-                    <div className="hamburger-menu">
-                        {/*checkbox used to check if hamburger menu is clicked*/}
-                        <input type="checkbox" id="menu-toggle" />
-                        <label htmlFor="menu-toggle" className="hamburger">
-                            {/*hamburger menu icon*/}
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </label>
+                    <button className="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+                        <GiHamburgerMenu style={{ color: "#081051", fontSize: "24px" }}></GiHamburgerMenu></button>
+
+                    {menuOpen && (
 
                         <ul className="menu MobileLinks">
                             <li>
-                                <Link to="/" className='nav-link'>Home</Link>
+                                <Link to="/" className='nav-link' onClick={() => setMenuOpen(false)}>Home</Link>
                             </li>
                             <li>
-                                <Link to="/Todos" className='nav-link'>Todos</Link>
+                                <Link to="/Todos" onClick={() => setMenuOpen(false)} className='nav-link'>Todos</Link>
                             </li>
                             <button className="mobileIconBtn" onClick={profileNavigate}>
                                 {User?.currentUser?.name}<FaRegUser className="mobileIcon" />
                             </button>
-                        </ul>
-                    </div>
+                        </ul>)}
                 </nav >
                 : <nav className="navbar">
 
@@ -94,29 +89,22 @@ export default function NavBarLoggedIn() {
 
 
                     {/*Hamburger menu*/}
-                    <div className="hamburger-menu">
-                        {/*checkbox used to check if hamburger menu is clicked*/}
-                        <input type="checkbox" id="menu-toggle" />
-                        <label htmlFor="menu-toggle" className="hamburger">
-                            {/*hamburger menu icon*/}
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </label>
 
+                    <button className="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+                        <GiHamburgerMenu style={{ color: "#081051", fontSize: "24px" }}></GiHamburgerMenu></button>
+                    {menuOpen && (
                         <ul className="menu MobileLinks">
                             <li>
-                                <Link to="/" className='nav-link'>Home</Link>
+                                <Link to="/" onClick={() => setMenuOpen(false)} className='nav-link'>Home</Link>
                             </li>
                             <li>
-                                <Link to="/Todos" className='nav-link'>Todos</Link>
+                                <Link to="/Todos" onClick={() => setMenuOpen(false)} className='nav-link'>Todos</Link>
                             </li>
                             <button className="mobileIconBtn" onClick={LoginNavigate}>
                                 Login <FaRegUser className="mobileIcon" />
                             </button>
-                        </ul>
-                    </div>
-                </nav>}
+                        </ul>)}
+                </nav >}
         </>
     )
 }

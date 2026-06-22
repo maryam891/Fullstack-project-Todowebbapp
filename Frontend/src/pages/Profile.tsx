@@ -19,49 +19,61 @@ export default function Profile() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        //Check if user is loggedin and that the user exists before sending request
-        if (Auth?.isLoggedIn && Auth?.currentUser) {
-            fetch(`${import.meta.env.VITE_API_URL}/Profile`, {
-                method: 'POST',
+        const handleGetuser = async () => {
+            //Check if user is loggedin and that the user exists before sending request
+            if (!Auth?.isLoggedIn && !Auth?.currentUser) {
+                return
+            }
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/Profile`, {
+                    method: 'POST',
+                    body: JSON.stringify({ id: Auth?.currentUser?.userId }),
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                })
+                if (!response.ok) {
+                    return
+
+                }
+
+
+                const result = await response.json()
+
+                setUserInfo(result);
+
+
+            } catch (err) {
+
+                console.log(err, "User does not exist");
+            }
+        }
+        handleGetuser()
+
+    }, [Auth?.currentUser?.userId, Auth?.isLoggedIn, Auth?.currentUser])
+    //Render everytime a new user logs in and userId changes
+
+    //Remove account
+    async function handleDelAccount() {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/removeAccount`, {
+                method: 'DELETE',
                 body: JSON.stringify({ id: Auth?.currentUser?.userId }),
                 headers: {
                     'Content-type': 'application/json',
                 },
             })
-                .then((response) => response.json())
-                .then((data) => {
-                    setUserInfo(data);
-                })
-                .catch((err) => {
-                    alert("User does not exist")
-                    console.log(err.message);
-                });
+            if (!response.ok) {
+                return
+            }
+            await response.json()
+
+            setDelAcc(true)
+
         }
-
-    }, [Auth?.currentUser?.userId, Auth?.isLoggedIn, Auth?.currentUser])
-    //Render everytime a new user loggs in and userId changes
-
-    //Remove account
-    function handleDelAccount() {
-        fetch(`${import.meta.env.VITE_API_URL}/removeAccount`, {
-            method: 'DELETE',
-            body: JSON.stringify({ id: Auth?.currentUser?.userId }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => {
-                if (response.ok) {
-                    setDelAcc(true)
-                }
-                else {
-                    console.log('error');
-                }
-
-            })
-            .catch((err) => {
-                console.log(err.message, 'error');
-            });
+        catch (error) {
+            console.log(error, 'Could not delete account');
+        };
     }
 
     useEffect(() => {
