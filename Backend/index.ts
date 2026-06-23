@@ -28,6 +28,7 @@ app.use(
       /https:\/\/fullstack-project-todowebbapp.*\.vercel\.app/,
       "http://localhost:5173",
     ],
+    credentials: true,
   }),
 );
 

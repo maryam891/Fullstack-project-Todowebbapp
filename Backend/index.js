@@ -70,6 +70,7 @@ app.use((0, cors_1.default)({
         /https:\/\/fullstack-project-todowebbapp.*\.vercel\.app/,
         "http://localhost:5173",
     ],
+    credentials: true,
 }));
 app.use(express_1.default.json());
 //Login
