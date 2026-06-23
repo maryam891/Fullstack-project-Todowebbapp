@@ -133,22 +133,6 @@
     flex-direction: column;
 }
 
-.close-btn {
-    height: 40px;
-    width: 110px;
-    font-size: 0.9rem;
-    background-color: #D2A8E2;
-    color: #081051;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    margin-left: 30px;
-}
-
-.close-btn:hover {
-    transform: scale(1.1);
-}
-
 
 .textBtnContainer {
     display: flex;

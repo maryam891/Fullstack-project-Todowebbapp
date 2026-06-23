@@ -7,7 +7,7 @@ import todoImage from "../assets/todoImage.svg"
 import seeProgressicon from "../assets/progressIcon.svg"
 import addSticker from "../assets/addSticker.svg"
 import Spinner from 'react-bootstrap/Spinner';
-import { Modal } from "react-bootstrap";
+
 
 
 export interface Home {
@@ -27,7 +27,6 @@ export default function Home() {
     //Use values from useContext
     const user = useContext(AuthStatusContext)
     const [todos, setTodos] = useState<Home[]>([])
-    const [getUserTodosErrPopUp, setGetUserTodosErrPopUp] = useState(false)
 
     useEffect(() => {
         const getCurrentUser = async () => {
@@ -40,14 +39,12 @@ export default function Home() {
                     },
                 })
                 if (!response.ok) {
-                    setGetUserTodosErrPopUp(true)
                     return
                 }
                 const result = await response.json()
                 setTodos(result);
             }
             catch (error) {
-                setGetUserTodosErrPopUp(true)
                 console.log(error, 'Could not get user todos');
             }
         }
@@ -63,14 +60,6 @@ export default function Home() {
     }
     return (
         <>
-            <Modal show={getUserTodosErrPopUp === true} onHide={() => setGetUserTodosErrPopUp(false)}>
-                <Modal.Header>
-                    <Modal.Title style={{ color: "#081051" }}>Could not get user todos!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <button className="close-btn" onClick={() => setGetUserTodosErrPopUp(false)}>Ok</button>
-                </Modal.Body>
-            </Modal>
             {/*Check if the user is loged in to show logedin layout else show other layout*/}
             {user?.isLoggedIn === true ?
                 <main className="HomeLoggedIn">
