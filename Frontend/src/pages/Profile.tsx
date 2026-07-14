@@ -6,7 +6,7 @@ import { AuthStatusContext } from "../AuthContext";
 import { CiUser } from "react-icons/ci";
 import { Modal } from "react-bootstrap";
 export interface Profile {
-    Name: string,
+    name: string,
     user_img: string
 }
 
@@ -110,7 +110,7 @@ export default function Profile() {
                     <div className="profileContainer">
                         <div className="profileHeader">
                             {userInfo?.user_img ? <img src={userInfo.user_img}></img> : <CiUser className="profileIconImage" />}
-                            <h2>{userInfo?.Name}</h2>
+                            <h2>{userInfo?.name}</h2>
                         </div>
 
                         <form>

@@ -98,7 +98,7 @@ export default function SignUp() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Email: signUpForm.email, Name: signUpForm.name, Password: signUpForm.password })
+            body: JSON.stringify({ email: signUpForm.email, name: signUpForm.name, password: signUpForm.password })
         }
 
         try {
@@ -114,8 +114,8 @@ export default function SignUp() {
             if (Auth) {
                 Auth.signup({
                     userId: result.id,
-                    email: result.Email,
-                    name: result.Name,
+                    email: result.email,
+                    name: result.name,
 
                 })
             }

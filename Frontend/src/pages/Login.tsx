@@ -53,7 +53,7 @@ export default function Login() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/Login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ Email: loginForm.email, Password: loginForm.password })
+                body: JSON.stringify({ email: loginForm.email, password: loginForm.password })
             })
             if (!response.ok) {
                 setShowLoginErrPopUp(true)
@@ -67,7 +67,7 @@ export default function Login() {
 
             //Check if useContext values exists and set values to localstorage values and loginForm values
             if (User !== null) {
-                User.login({ email: result.Email, userId: result.id, name: result.Name })
+                User.login({ email: result.email, userId: result.id, name: result.name })
                 setFieldErrors({ emailField: false, passwordField: false })
                 setSubmitted(false)
                 setShowPopUp(true);

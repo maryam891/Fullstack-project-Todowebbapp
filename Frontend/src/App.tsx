@@ -77,7 +77,7 @@ function App() {
     if (storedUserId && storedEmail && storedIsLoggedIn === "true") {
       setCurrentUser({
         email: JSON.parse(storedEmail),
-        name: storedUserName ? JSON.parse(storedUserName) : "",
+        name: storedUserName ? JSON.parse(storedUserName) : undefined,
         userId: JSON.parse(storedUserId)
 
       });

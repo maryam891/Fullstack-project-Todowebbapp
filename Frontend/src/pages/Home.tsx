@@ -11,7 +11,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 
 export interface Home {
-    Todos: string,
+    todos: string,
     image: string,
     id: number
 }
@@ -80,10 +80,10 @@ export default function Home() {
                                 <div key={userTodos?.id}>
                                     <div className="homepageLoginTodoSection">
                                         <h3 data-testid="todo-item">
-                                            {userTodos.Todos}
+                                            {userTodos.todos}
                                         </h3>
                                         <div className="homepageLoginImgContainer" >
-                                            <img src={userTodos.image} alt={userTodos.Todos}></img>
+                                            <img src={userTodos.image} alt={userTodos.todos}></img>
                                         </div>
                                     </div>
                                 </div>

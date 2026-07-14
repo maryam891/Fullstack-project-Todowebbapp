@@ -15,7 +15,7 @@ export interface EditTodoModalProps {
     openEditImages: boolean,
     setOpenEditImages: (value: boolean) => void,
     setTodos: (value: todos[]) => void,
-    Todos: todos[]
+    todos: todos[]
     setEditModalOpen: (value: boolean) => void,
     getTodos: () => void,
 }
@@ -27,14 +27,14 @@ export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen
     const [editTodoText, setEditTodoText] = useState("")
     const [previewImage, setPreviewImage] = useState<string | undefined>(undefined)
     const [selectedImg, setSelectedImg] = useState<number | null>(null);
-    const [editDateTime, setEditDateTime] = useState<Date | null>(null)
+    const [editDateTime, setEditDateTime] = useState<Date | null>(new Date())
 
 
     //Sync selected todo =>
     // Show default todo text title and description when opening the editmodal
     // Use ?? to ensure todo title is always a string and not undefined
     useEffect(() => {
-        setEditTodoTitle(clickedEditTodo.Todos ?? "")
+        setEditTodoTitle(clickedEditTodo.todos ?? "")
         setEditTodoText(clickedEditTodo.todo_description ?? "")
         setSelectedImg(clickedEditTodo.image_id)
         setPreviewImage(clickedEditTodo.image)
@@ -75,7 +75,7 @@ export function EditTodoModal({ clickedEditTodo, editModalOpen, setEditModalOpen
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/todo/${id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ Todos: editTodoTitle, todo_description: editTodoText, image_id: selectedImg, id: id, user_id: User?.currentUser?.userId, chosen_date: editDateTime ? editDateTime.toISOString() : null }),
+                body: JSON.stringify({ todos: editTodoTitle, todo_description: editTodoText, image_id: selectedImg, id: id, user_id: User?.currentUser?.userId, chosen_date: editDateTime ? editDateTime.toISOString() : null }),
                 //Check if ediDateTime exists to convert to string when sending to backend
                 headers: {
                     'Content-type': 'application/json',

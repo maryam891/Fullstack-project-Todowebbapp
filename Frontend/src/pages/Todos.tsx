@@ -16,11 +16,11 @@ import DatePicker from "react-datepicker";
 
 export interface todos {
     id: number,
-    Todos: string,
+    todos: string,
     image: string,
     todo_description: string,
     image_id: number,
-    completed_todo: number,
+    completed_todo: boolean,
     chosen_date: string,
 
 
@@ -51,7 +51,7 @@ export default function Todos() {
     const [clickedTodo, setClickedTodo] = useState<todos | null>(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [showDelPopup, setShowDelPopup] = useState<number | null>(null)
-    const [selectedDateTime, setSelectedDateTime] = useState(new Date());
+    const [selectedDateTime, setSelectedDateTime] = useState<Date | null>(new Date())
 
 
     {/*Get current date*/ }
@@ -82,15 +82,15 @@ export default function Todos() {
     }
 
 
-    {/*Check which todos that are checked(true in backend(1)) and filter out all the todos that are checked)*/ }
-    const completedTodos = userTodos.filter(completedTodo => completedTodo.completed_todo === 1).length
+    {/*Check which todos that are completed(true in postgresSQL(boolean)) and filter out all the todos that are checked)*/ }
+    const completedTodos = userTodos.filter(completedTodo => completedTodo.completed_todo === true)
     async function changeCheckState(event: React.ChangeEvent<HTMLInputElement>, id: number) {
-        {/*Send the event target change to backend but also check if the todo is checked(1) or not checked(0)*/ }
+        {/*Send the event target change to backend but also check if the todo is checked(true) or not checked(false)*/ }
         const isChecked = event.target.checked;
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/todo/${id}`, {
                 method: 'POST',
-                body: JSON.stringify({ completed_todo: isChecked ? 1 : 0, id: id, user_id: User?.currentUser?.userId }),
+                body: JSON.stringify({ completed_todo: isChecked ? true : false, id: id, user_id: User?.currentUser?.userId }),
                 headers: {
                     'Content-type': 'application/json',
                 },
@@ -179,7 +179,7 @@ export default function Todos() {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/add-new-todo`, {
                 method: 'POST',
-                body: JSON.stringify({ Todos: addTodoTitle, todo_description: addTodoText, image_id: selectedImg, user_id: User?.currentUser?.userId, chosen_date: selectedDateTime }),
+                body: JSON.stringify({ todos: addTodoTitle, todo_description: addTodoText, image_id: selectedImg, user_id: User?.currentUser?.userId, chosen_date: selectedDateTime?.toISOString() }),
                 headers: {
                     'Content-type': 'application/json',
                 },
@@ -225,7 +225,7 @@ export default function Todos() {
                     <DatePicker
                         className="selectDateSection"
                         selected={selectedDateTime}
-                        onChange={() => setSelectedDateTime(selectedDateTime)}
+                        onChange={(date) => setSelectedDateTime(date)}
                         showTimeSelect
                         timeFormat="HH:mm"
                         timeIntervals={15}
@@ -285,7 +285,7 @@ export default function Todos() {
                             <h2>
                                 Completed todos today
                             </h2>
-                            <h3>{completedTodos}/{userTodos && userTodos.length}</h3>
+                            <h3>{completedTodos.length}/{userTodos && userTodos.length}</h3>
                         </div> : ""}
                         <div className="todoFlexContainer">
                             {userTodos && !modalOpen && !editModalOpen &&
@@ -308,12 +308,12 @@ export default function Todos() {
                                             <div className="todoTopRow">
                                                 <input type="checkbox" onChange={(event) => changeCheckState(event, UserTodos.id)}
                                                     //When a checkbox is checked it will be true(1)
-                                                    checked={UserTodos.completed_todo === 1}></input> <RiDeleteBin6Line className="dustbin" onClick={() => clickRemoveTodo(UserTodos.id)} /></div>
+                                                    checked={UserTodos.completed_todo === true}></input> <RiDeleteBin6Line className="dustbin" onClick={() => clickRemoveTodo(UserTodos.id)} /></div>
                                             <h3 data-testid="todo-item">
-                                                {UserTodos.Todos}
+                                                {UserTodos.todos}
                                             </h3>
                                             <div className="todoImgContainer">
-                                                <img src={UserTodos.image} alt={UserTodos.Todos}></img>
+                                                <img src={UserTodos.image} alt={UserTodos.todos}></img>
                                             </div>
                                             <div className="todoBottomRow">
 
@@ -348,7 +348,7 @@ export default function Todos() {
 
             {clickedTodo && modalOpen && <TodoModal clickedTodo={clickedTodo} setModalOpen={setModalOpen} />}
 
-            {clickedEditTodo && editModalOpen && <EditTodoModal clickedEditTodo={clickedEditTodo} setEditModalOpen={setEditModalOpen} editModalOpen={editModalOpen} openEditImages={openEditImages} setOpenEditImages={setOpenEditImages} setTodos={setTodos} Todos={userTodos} getTodos={getTodos} />}
+            {clickedEditTodo && editModalOpen && <EditTodoModal clickedEditTodo={clickedEditTodo} setEditModalOpen={setEditModalOpen} editModalOpen={editModalOpen} openEditImages={openEditImages} setOpenEditImages={setOpenEditImages} setTodos={setTodos} todos={userTodos} getTodos={getTodos} />}
         </>
     )
 }

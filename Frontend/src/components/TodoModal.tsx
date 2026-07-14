@@ -14,7 +14,7 @@ export default function TodoModal({ clickedTodo, setModalOpen }: TodoModalProps)
                     setModalOpen(false)
                 }} />
                 <h1>
-                    {clickedTodo.Todos}
+                    {clickedTodo.todos}
                 </h1>
                 <p>{clickedTodo.todo_description}</p>
 
@@ -30,7 +30,7 @@ export default function TodoModal({ clickedTodo, setModalOpen }: TodoModalProps)
                             minute: "numeric",
                         })}
                 </p>
-                <img src={clickedTodo.image} alt={clickedTodo.Todos}></img>
+                <img src={clickedTodo.image} alt={clickedTodo.todos}></img>
             </div>
 
         </>
