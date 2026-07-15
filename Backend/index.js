@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 app.use((0, cors_1.default)({
     origin: [
         "https://fullstack-project-todowebbapp.vercel.app",
-        /https:\/\/fullstack-project-todowebbapp.*\.vercel\.app/,
+        "https://fullstack-project-todowebbapp-hnipe8r4w-maryam891s-projects.vercel.app",
         "http://localhost:5173",
     ],
     credentials: true,
