@@ -4,7 +4,9 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 
 const sqlite = new sqlite3.Database("./mytodo.sqlite");
-
+//One time migration script used to transfer data
+//from the previous SQLite database to PostgreSQL.
+//Kept for documentation purposes after migration.
 const postgres = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
