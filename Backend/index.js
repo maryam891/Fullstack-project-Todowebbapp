@@ -81,6 +81,7 @@ app.post("/SignUp", (request, response) => __awaiter(void 0, void 0, void 0, fun
 }));
 //Compare id:s to send user_img and Name of user that is logged in and display on profile page
 app.post("/Profile", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Profile request body:", request.body);
     try {
         let userId = yield database.query("SELECT name, user_img, email FROM users WHERE id=$1", [request.body.id]);
         if (!userId.rows[0]) {

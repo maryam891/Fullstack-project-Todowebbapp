@@ -65,7 +65,7 @@ export default function Login() {
             console.log(result)
 
 
-            //Check if useContext values exists and set values to localstorage values and loginForm values
+            //Check if useContext values does not equal to null to pass in localstorage values and loginForm values
             if (User !== null) {
                 User.login({ email: result.email, userId: result.id, name: result.name })
                 setFieldErrors({ emailField: false, passwordField: false })

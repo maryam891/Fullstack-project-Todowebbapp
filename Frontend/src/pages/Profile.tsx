@@ -21,7 +21,7 @@ export default function Profile() {
     useEffect(() => {
         const handleGetuser = async () => {
             //Check if user is loggedin and that the user exists before sending request
-            if (!Auth?.isLoggedIn && !Auth?.currentUser) {
+            if (!Auth?.isLoggedIn || !Auth?.currentUser) {
                 return
             }
             try {

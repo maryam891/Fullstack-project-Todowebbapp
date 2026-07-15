@@ -22,8 +22,8 @@ function migrateUsers() {
       for (const user of users) {
         const hashedPassword = await bcrypt.hash(user.Password, 10);
         await postgres.query(
-          "INSERT INTO users (name, email, password) VALUES($1, $2, $3) ",
-          [user.Name, user.Email, hashedPassword],
+          "INSERT INTO users (id,name, email, password) VALUES($1, $2, $3, $4) ",
+          [user.id, user.Name, user.Email, hashedPassword],
         );
       }
       console.log("Users migrated!");

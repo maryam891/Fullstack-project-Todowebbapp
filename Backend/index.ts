@@ -85,6 +85,7 @@ app.post("/SignUp", async (request, response) => {
 
 //Compare id:s to send user_img and Name of user that is logged in and display on profile page
 app.post("/Profile", async (request, response) => {
+  console.log("Profile request body:", request.body);
   try {
     let userId = await database.query(
       "SELECT name, user_img, email FROM users WHERE id=$1",
