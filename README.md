@@ -15,7 +15,7 @@ The application is deployed using:
 
 ## 🗄️ Database Migration
 
-The project originally used SQLite durin development and was later migrated in July 2026 to PostgreSQL to support a production environment. The old schema sql schema is kept as "old-sqlite.sql" to show the migration history.
+The project originally used SQLite during development and was later migrated in July 2026 to PostgreSQL to support a production environment. The old schema sql schema is kept as "old-sqlite.sql" to show the migration history.
 
 The migration included:
 
